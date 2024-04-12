@@ -12,8 +12,10 @@
       }
     ]
   ],
-  "plugins": ["transform-class-properties"],
+  "plugins": ["babel-plugin-transform-class-properties"],
   "env": {
-    "test": {}
+    "test": {
+      "plugins": ["@babel/plugin-transform-class-properties"]
+    }
   }
 }

@@ -1,15 +1,13 @@
-import { Outlet } from "react-router-dom";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import { Outlet } from 'react-router-dom';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 //import Filter from "../../components/Filters/Filter";
 
-
-function Layout() {
+function HeaderOnlyLayout() {
   return (
     <div>
       <div className="fixed top-0 left-0 right-0 ">
-        <Header/>
-        {/* <Filter/> */}
+        <Header />
       </div>
       <div className="mx-12 my-28">
         <Outlet />
@@ -18,4 +16,4 @@ function Layout() {
     </div>
   );
 }
-export default Layout;
+export default HeaderOnlyLayout;
