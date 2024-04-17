@@ -7,11 +7,10 @@ import Footer from "../../components/Footer/Footer";
 function Layout() {
   return (
     <div>
-      <div className="fixed top-0 left-0 right-0 ">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white ">
         <Header/>
-        {/* <Filter/> */}
       </div>
-      <div className="mx-12 my-28">
+      <div className="py-4 mx-12 sm:mx-6 md:mx-10 lg:mx-12 my-28">
         <Outlet />
       </div>
       <Footer />
