@@ -1,9 +1,9 @@
 import React from 'react';
+import { BsStarFill } from 'react-icons/bs';
 
 
-const ImageSlider = ({ title, image, price }) => {
-  console.log(title);
-  console.log(price);
+const ImageSlider = ({ title, image, price, rating }) => {
+  
   return (
     <>
       <div className=''>
@@ -32,14 +32,14 @@ const ImageSlider = ({ title, image, price }) => {
               This is a rare find
             </p> */}
             <h5 className="max-w-[17rem]  text-[16px] -mt-1 text-gray-500">
-              15/4 - 17/4
+              {title}
             </h5>
             <h5 className="max-w-[17rem] font-semibold text-[16px] -mt-1 text-gray-500">{price}</h5>
           </div>
           {/* Right */}
           <div className="flex items-center space-x-1">
-            {/* <BsStarFill /> */}
-            <h5 className="text-[15px]">5.0</h5>
+            <h5 className="text-[15px]">{rating}</h5>
+            <BsStarFill className='text-sm text-yellow'/>
           </div>
         </div>
       </div>
