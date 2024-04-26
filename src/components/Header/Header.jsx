@@ -1,22 +1,14 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-//import logo2 from '../../assets/images/logo2.jpg'
 import { FiSearch } from 'react-icons/fi';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Box } from '@mui/material'; // Textfield
 import { Link } from 'react-router-dom';
 import AccountMenu from './MenusUser/AccountMenu';
-import MenuTransitions from './MenusUser/QuantityPeople';
 
 
 
 const Header = () => {
   
-  const [value, setValue] = useState(dayjs());
+  //const [value, setValue] = useState(dayjs());
   const [scrolling, setScrolling] = useState(false);
 
   useEffect(() => {
@@ -41,13 +33,6 @@ const Header = () => {
         <div className="flex items-center justify-between h-28 sm:mx-6 md:mx-10 lg:mx-12 ">
           {/* left */}
           <Link className="flex h-6" component={Link} to={'/'}>
-            {/* <img
-              component={Link}
-              to={'/'}
-              src={logo2}
-              alt="logo"
-              className="object-cover w-20 cursor-pointer"
-            /> */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="102"
@@ -61,50 +46,28 @@ const Header = () => {
           {/* middle */}
           <div className="relative items-center justify-center h-20 bg-white border rounded-full shadow-sm md:flex shadow-gray-400">
             {/* thẻ div ngay dưới là nội dung của search, nhận phòng, trả phòng, khách */}
-            <div className=" w-[52rem] rounded-full items-center ountline-0 h-20">
+            <div className=" w-[32rem] rounded-full items-center ountline-0 h-20">
               <div className="absolute flex items-center justify-between w-full h-20 pl-12 pr-12 font-semibold text-gray-500 justify-items-center">
-                {/* <input
-                type="search"
-                placeholder="Địa điểm"
-                className="w-[11rem] h-[3rem] px-6 font-semibold text-gray-500 border-none hover:bg-gray !important"
-                /> */}
-                <div className="w-[8rem] mr-4 h-20 font-semibold text-gray-500 border-none">
+                <div className="w-[32rem] mr-4 h-20 font-semibold text-gray-500 border-none">
                   <input
                     label="Địa điểm"
                     placeholder="Địa điểm"
                     type="search"
                     //fullWidth
-                    className="border-none outline-none w-[8rem] h-20"
+                    className="border-none outline-none w-[28rem] h-20"
                     variant="outlined"
                   />
                 </div>
-
-                <div className="items-center w-full px-4 border-l border-r cursor-pointer justify-items-center">
-                  <Box>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DemoContainer components={['DatePicker', 'DatePicker']}>
-                        <DatePicker label="Nhận phòng" defaultValue={dayjs()} />
-                        <DatePicker
-                          label="Trả phòng"
-                          value={value}
-                          onChange={(newValue) => setValue(newValue)}
-                        />
-                      </DemoContainer>
-                    </LocalizationProvider>
-                  </Box>
-                </div>
-                {/* <div className="w-[10rem] px-6 cursor-pointer">Khách</div> */}
-                <MenuTransitions/>
               </div>
             </div>
             {/* bg-[#ff5a60] */}
-            <div className="flex bg-[#1976D2]  p-3 rounded-full mx-2">
-              <FiSearch className="text-white" />
+            <div className="flex bg-[#1976D2] p-4 w-[3rem] h-[3rem] rounded-full mx-4 cursor-pointer">
+              <FiSearch className="text-white cursor-pointer" />
             </div>
           </div>
 
           {/* right */}
-          <div className="flex items-center font-semibold text-gray-600">
+          <div className="flex items-center font-semibold text-center text-gray-600">
             <AccountMenu/>
             {/* <MenuTransitions/> */}
           </div>
