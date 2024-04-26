@@ -3,7 +3,7 @@ import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
-  RouterProvider,
+  RouterProvider
 } from 'react-router-dom';
 import Layout from './layouts/DefaultLayout/DefaultLayout';
 import HeaderOnlyLayout from './layouts/HeaderOnlyLayout/HeaderOnlyLayout';
@@ -15,8 +15,8 @@ const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path='/' element={<Layout/>}>
-          <Route index element={<HomePage/>}/>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
         </Route>
         <Route path="/login" element={<HeaderOnlyLayout />}>
           <Route index element={<Login></Login>} />
@@ -24,8 +24,8 @@ const App = () => {
         <Route path="/signup" element={<HeaderOnlyLayout />}>
           <Route index element={<Signup></Signup>} />
         </Route>
-      </>,
-    ),
+      </>
+    )
   );
   return (
     <>
