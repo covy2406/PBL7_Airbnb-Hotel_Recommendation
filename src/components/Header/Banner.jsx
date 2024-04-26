@@ -30,23 +30,25 @@ const Banner = () => {
   };
   return (
     <>
-      <Slider  {...settings}>
-        {bannerImage.map((item, index) => (
-          <div className="relative sm:h-[400px] md:h-[420px] lg:h-[550px] xl:h-[580px] ">
-            <img
-              src={item.urlImage}            
-              alt=""
-              layout="fill"
-              objectFit="cover"
-              className='w-full h-full quality-100'
-            />
-            <div className='absolute w-full text-3xl text-center top-1/2'>
-              <p className='text-3xl text-gray-50 '>You don't know where to rent a hotel ?</p>
-              <p className='text-2xl text-white'> Here are the options that best suit you</p>
+      <div className='slider-container'>
+        <Slider  {...settings}>
+          {bannerImage.map((item, index) => (
+            <div className="relative sm:h-[400px] md:h-[420px] lg:h-[550px] xl:h-[580px] ">
+              <img
+                src={item.urlImage}            
+                alt=""
+                layout="fill"
+                objectFit="cover"
+                className='w-full h-full quality-100'
+              />
+              <div className='absolute w-full text-3xl text-center top-1/2'>
+                <p className='text-3xl text-gray-50 '>You don't know where to rent a hotel ?</p>
+                <p className='text-2xl text-white'> Here are the options that best suit you</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      </div>
     </>
   );
 };

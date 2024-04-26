@@ -13,6 +13,7 @@ import {
   IconButton,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = React.useState('');
@@ -94,6 +95,13 @@ const Login = () => {
           <Button variant="contained" type="submit">
             Đăng nhập
           </Button>
+          <div className='flex justify-between mt-4'>
+            <p className='text-sm text-center'>Don't have account?
+              <Link to={'/signup'} className='pl-2 text-blue-500 cursor-pointer'>Signup</Link>
+            </p>
+            <span className='text-sm font-semibold'>or</span>
+            <p className='text-sm text-center text-blue-500 cursor-pointer'>Forget password ?</p>
+          </div>
         </form>
       </div>
     </>

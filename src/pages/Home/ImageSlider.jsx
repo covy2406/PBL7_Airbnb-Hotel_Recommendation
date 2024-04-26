@@ -1,3 +1,5 @@
+//import { Link } from '@mui/material';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { BsStarFill } from 'react-icons/bs';
 
@@ -6,7 +8,7 @@ const ImageSlider = ({ title, image, price, rating }) => {
   
   return (
     <>
-      <div className=''>
+      <Link component={Link} to={'/detail'} className='cursor-pointer'>
         <div className="relative ">
           <div className="grid absolute w-full h-full rounded-b-[1.3rem]"></div>
           <div className="flex ">
@@ -42,7 +44,7 @@ const ImageSlider = ({ title, image, price, rating }) => {
             <BsStarFill className='text-sm text-yellow'/>
           </div>
         </div>
-      </div>
+      </Link>
     </>
   )
 };
