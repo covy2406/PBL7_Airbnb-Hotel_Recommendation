@@ -1,12 +1,10 @@
 import React from 'react';
 import { BsStarFill } from 'react-icons/bs';
 
-
 const ImageSlider = ({ title, image, price, rating }) => {
-  
   return (
     <>
-      <div className=''>
+      <div className="">
         <div className="relative ">
           <div className="grid absolute w-full h-full rounded-b-[1.3rem]"></div>
           <div className="flex ">
@@ -31,19 +29,17 @@ const ImageSlider = ({ title, image, price, rating }) => {
             {/* <p className="max-w-[17rem] font-semibold text-[17px]">
               This is a rare find
             </p> */}
-            <h5 className="max-w-[17rem]  text-[16px] -mt-1 text-gray-500">
-              {title}
-            </h5>
+            <h5 className="max-w-[17rem]  text-[16px] -mt-1 text-gray-500">{title}</h5>
             <h5 className="max-w-[17rem] font-semibold text-[16px] -mt-1 text-gray-500">{price}</h5>
           </div>
           {/* Right */}
           <div className="flex items-center space-x-1">
             <h5 className="text-[15px]">{rating}</h5>
-            <BsStarFill className='text-sm text-yellow'/>
+            <BsStarFill className="text-sm text-yellow" />
           </div>
         </div>
       </div>
     </>
-  )
+  );
 };
 export default ImageSlider;

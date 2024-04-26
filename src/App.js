@@ -4,6 +4,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider
+  RouterProvider
 } from 'react-router-dom';
 import Layout from './layouts/DefaultLayout/DefaultLayout';
 import HeaderOnlyLayout from './layouts/HeaderOnlyLayout/HeaderOnlyLayout';
@@ -18,11 +19,9 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
         </Route>
-        <Route path="/login" element={<HeaderOnlyLayout />}>
-          <Route index element={<Login></Login>} />
-        </Route>
-        <Route path="/signup" element={<HeaderOnlyLayout />}>
-          <Route index element={<Signup></Signup>} />
+        <Route element={<HeaderOnlyLayout />}>
+          <Route path="/login" element={<Login></Login>} />
+          <Route path="/signup" element={<Signup></Signup>} />
         </Route>
       </>
     )
