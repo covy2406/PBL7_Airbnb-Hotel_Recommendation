@@ -1,9 +1,9 @@
 import React from 'react';
 import ImageSlider from './ImageSlider';
 import ImageHotel from '../../assets/images/ImageHotel.jpg';
-import CityOutstanding from './SmallCard/CityOutstanding';
+import CityOutstanding from '../../components/CityOutstanding/CityOutstanding';
 import CityHot from './MediumCard/CityHot';
-import CustomIcons from './Pagination/Pagination';
+import CustomIcons from '../../components/Pagination/Pagination';
 
 const Home = () => {
   const imageList = [
