@@ -3,7 +3,7 @@ import React from 'react';
 export const AdminCrawling = () => {
   return (
     <>
-      <div>AdminCrawling</div>
+      <div className="bg-lightBlue">AdminCrawling</div>
     </>
   );
 };
