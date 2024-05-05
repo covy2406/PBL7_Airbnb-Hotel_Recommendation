@@ -1,16 +1,11 @@
 import React from 'react';
-import {
-  Route,
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider
-} from 'react-router-dom';
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import Layout from './layouts/DefaultLayout/DefaultLayout';
 import HeaderOnlyLayout from './layouts/HeaderOnlyLayout/HeaderOnlyLayout';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import HomePage from './pages/Home/Home';
-import { AdminLayout, AdminCrawling, AdminSetting, AdminDashboard } from './pages/Admin';
+import { AdminLayout, AdminCrawling, AdminSetting, AdminDashboard, AdminNavbars } from './pages/Admin';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -23,10 +18,12 @@ const App = () => {
           <Route path="/login" element={<Login></Login>} />
           <Route path="/signup" element={<Signup></Signup>} />
         </Route>
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route path="/dashboard" element={<AdminDashboard />} />
-          <Route path="/crawling" element={<AdminCrawling />} />
-          <Route path="/setting" element={<AdminSetting />} />
+        <Route path="admin" element={<AdminLayout />}>
+          <Route element={<AdminNavbars />}>
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="crawling" element={<AdminCrawling />} />
+            <Route path="setting" element={<AdminSetting />} />
+          </Route>
         </Route>
       </>
     )
