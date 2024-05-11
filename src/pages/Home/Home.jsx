@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ImageSlider from './ImageSlider';
 import ImageHotel from '../../assets/images/ImageHotel.jpg';
 import CityOutstanding from '../../components/CityOutstanding/CityOutstanding';
 import CityHot from './MediumCard/CityHot';
 import CustomIcons from '../../components/Pagination/Pagination';
+import { getCities } from '../../api/apiCities';
 
 const Home = () => {
+  const [cities, setCities] = useState([])
+
   const imageList = [
     { id: 1, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 1 },
     { id: 2, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 3 },
@@ -83,12 +86,23 @@ const Home = () => {
     },
   ];
 
+  // call api
+  useEffect(() => {
+    getCities()
+      .then((res) => {
+        setCities(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },[])
+
   return (
     <div className=" sm:py-5">
       <div className="mb-6">
         <h2 className="pb-5 text-4xl font-semibold text-center">Các điểm đến thu hút nhất Việt Nam</h2>
         <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'>
-          {cityListHot?.map((itemCity, index) => (
+          {cities?.map((itemCity, index) => (
             <CityOutstanding
               key={index}
               url={itemCity.url}

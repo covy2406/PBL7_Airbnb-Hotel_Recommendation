@@ -11,25 +11,6 @@ import { CiMoneyCheck1 } from "react-icons/ci";
 //import { IoMdCheckmark } from "react-icons/io";
 
 
-// const HotelList = [
-//   { id: 1, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 1 },
-//   { id: 2, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 3 },
-//   { id: 3, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 5 },
-//   { id: 4, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 5 },
-//   { id: 5, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 5 },
-//   { id: 6, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 3 },
-//   { id: 7, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 4 },
-//   { id: 8, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 4 },
-//   { id: 9, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 3 },
-//   { id: 10, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 5 },
-//   { id: 11, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 5 },
-//   { id: 12, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 4 },
-//   { id: 13, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 4 },
-//   { id: 14, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 5 },
-//   { id: 15, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 3 },
-//   { id: 16, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 4 },
-//   { id: 17, name: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 3 },
-// ];
 const Detail = () => {
   return (
     <>

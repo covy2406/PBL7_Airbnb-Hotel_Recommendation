@@ -1,6 +1,7 @@
 import axios from 'axios';
 const request = axios.create({
   //baseURL: 'https://fb56-116-103-249-57.ngrok-free.app',
+  baseURL: 'https://pbl7-be-nest.onrender.com'
 });
 
 export const get = async (path, options = {}) => {

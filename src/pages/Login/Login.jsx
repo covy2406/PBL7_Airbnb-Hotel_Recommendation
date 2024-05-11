@@ -14,12 +14,16 @@ import {
 } from '@mui/material';
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Link } from 'react-router-dom';
+//import { useNavigate} from 'react-router-dom';
 
 const Login = () => {
+  //const navigate = useNavigate();
+
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [passwordError, setPasswordError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
 
   const validateForm = () => {
     // Kiểm tra lỗi cho từng trường dữ liệu
