@@ -10,9 +10,9 @@ import {
   //Grid,
   Typography,
   InputAdornment,
-  IconButton,
+  IconButton
 } from '@mui/material';
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 //import { useNavigate} from 'react-router-dom';
 
@@ -23,7 +23,6 @@ const Login = () => {
   const [password, setPassword] = React.useState('');
   const [passwordError, setPasswordError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
 
   const validateForm = () => {
     // Kiểm tra lỗi cho từng trường dữ liệu
@@ -63,13 +62,7 @@ const Login = () => {
             </Typography>
           </div>
           <div className="mb-4 bg-white">
-            <TextField
-              label="Username"
-              variant="outlined"
-              fullWidth
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-            />
+            <TextField label="Username" variant="outlined" fullWidth value={username} onChange={(event) => setUsername(event.target.value)} />
             {/* <Typography variant="caption" color="error">{usernameError}</Typography> */}
           </div>
           <div className="mb-4 bg-white">
@@ -84,27 +77,26 @@ const Login = () => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleShowPassword}
-                      edge="end"
-                    >
+                    <IconButton aria-label="toggle password visibility" onClick={handleShowPassword} edge="end">
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
-                ),
+                )
               }}
             />
           </div>
           <Button variant="contained" type="submit">
             Đăng nhập
           </Button>
-          <div className='flex justify-between mt-4'>
-            <p className='text-sm text-center'>Don't have account?
-              <Link to={'/signup'} className='pl-2 text-blue-500 cursor-pointer'>Signup</Link>
+          <div className="flex justify-between mt-4">
+            <p className="text-sm text-center">
+              Don't have account?
+              <Link to={'/signup'} className="pl-2 text-blue-500 cursor-pointer">
+                Signup
+              </Link>
             </p>
-            <span className='text-sm font-semibold'>or</span>
-            <p className='text-sm text-center text-blue-500 cursor-pointer'>Forget password ?</p>
+            <span className="text-sm font-semibold">or</span>
+            <p className="text-sm text-center text-blue-500 cursor-pointer">Forget password ?</p>
           </div>
         </form>
       </div>

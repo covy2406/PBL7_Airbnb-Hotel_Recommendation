@@ -4,10 +4,7 @@ import { FiSearch } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import AccountMenu from './MenusUser/AccountMenu';
 
-
-
 const Header = () => {
-  
   //const [value, setValue] = useState(dayjs());
   const [scrolling, setScrolling] = useState(false);
 
@@ -25,7 +22,6 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
 
   return (
     <>
@@ -68,7 +64,7 @@ const Header = () => {
 
           {/* right */}
           <div className="flex items-center font-semibold text-center text-gray-600">
-            <AccountMenu/>
+            <AccountMenu />
             {/* <MenuTransitions/> */}
           </div>
         </div>
