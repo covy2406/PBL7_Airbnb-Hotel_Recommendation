@@ -1,4 +1,5 @@
-import * as React from 'react';
+//import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -11,8 +12,16 @@ import Logout from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Cookies from 'js-cookie';
+import { Button } from '@mui/material';
+import { StorageContext } from '../../../context/Storage/StorageContext';
+import { signOut } from '../../../api/apiUsers';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function AccountMenu() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -21,6 +30,25 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogOut = async (event) => {
+    Cookies.remove('authToken');
+    window.location.replace('/');
+    //navigate('/');
+    try {
+      await signOut();
+      toast.success('Đăng xuất thành công');
+      navigate('/');
+    } catch (error) {
+      toast.error('Lỗi không thể đăng xuất');
+      toast.error(error.message);
+    }
+  }
+
+  const { currentUser } = React.useContext(StorageContext); // Lấy dữ liệu từ context ; userData
+  // console.log(currentUser);
+  // console.log(userData);
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -29,8 +57,20 @@ export default function AccountMenu() {
             className="flex items-center gap-4 px-5 py-3 font-bold bg-white border-2 rounded-full cursor-pointer text-gray "
             onClick={handleClick}
           >
-            <FiMenu />
-            <AccountCircleIcon className="text-[22px]" />
+            {/* <FiMenu />
+            <AccountCircleIcon className="text-[22px]" /> */}
+            {currentUser ? (
+              <>
+                <FiMenu />
+                <AccountCircleIcon  className="text-[22px]"/> {/* Hiển thị avatar */}
+                <span className='text-[22px] text-black'>Tên: {currentUser.name}</span> {/* Hiển thị tên tài khoản, ở đây là userData ko phải là currentUser */}
+              </>
+            ) : (
+              <>
+                <FiMenu />
+                <AccountCircleIcon className="text-[22px]" />
+              </>
+            )}
           </div>
         </Tooltip>
       </Box>
@@ -86,9 +126,10 @@ export default function AccountMenu() {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Đăng xuất
+          <Button onClick={handleLogOut}>Đăng xuất</Button>
         </MenuItem>
       </Menu>
+      <ToastContainer/>
     </React.Fragment>
   );
 }
