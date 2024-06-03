@@ -147,7 +147,7 @@ const Home = () => {
     if (user_id) {
       getRecommend(user_id)
         .then((res) => {
-          setRcmd(res.user_id);
+          setRcmd(res);
         })
         .catch((err) => {
           console.error(err);
