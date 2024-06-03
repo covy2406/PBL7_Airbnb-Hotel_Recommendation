@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useEffect, useState } from 'react';
 //import ImageSlider from './ImageSlider';
 //import ImageHotel from '../../assets/images/ImageHotel.jpg';
@@ -9,6 +9,9 @@ import CustomIcons from '../../components/Pagination/Pagination';
 import { getHotel } from '../../api/apihotel';
 // import HotelComponent from '../../components/Hotels/Hotelcomponent';
 import HotelHome from './HotelHome';
+import { useParams } from 'react-router-dom';
+import { getRecommend } from '../../api/apiRecommend';
+import { StorageContext } from '../../context/Storage/StorageContext';
 // import HotelHome from './HotelHome';
 
 const Home = () => {
@@ -16,8 +19,15 @@ const Home = () => {
   const [page, setPage] = useState(1); // Trang hiện tại
   const [hotels, setHotels] = useState([]); // Du lieu khach san hien tai
   const [totalPage, setTotalPage] = useState(0); // Tong so trang
+  const [rcmd, setRcmd] = useState([]);
+  const count = 12; // Số lượng khách sạn trên mỗi trang
 
-  //console.log(hotels);
+  const { currentUser } = useContext(StorageContext);
+
+  const storage = useContext(StorageContext);
+
+  const user_id = useParams().id || storage.userData.id;
+  console.log('in ra id', user_id)
 
   // const imageList = [
   //   { id: 1, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 1 },
@@ -107,30 +117,51 @@ const Home = () => {
     //     console.log(err);
     //   });
 
-    getHotel()
+    // getHotel()
+    //   .then((res) => {
+    //   //   const totalPage = res.length;
+    //   //   const hotelsPerPage = 100;
+    //   //   setTotalPage(Math.ceil(totalPage / hotelsPerPage));
+    //   //   const startIndex = (page - 1) * hotelsPerPage;
+    //   //   const endIndex = startIndex + hotelsPerPage;
+    //   //   setHotels(res.slice(startIndex, endIndex));
+    //     setHotels(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   })
+    
+    getHotel(page, count)
+    .then((res) => {
+      setHotels(res.data);
+      setTotalPage(Math.ceil(res.totalPages / count));
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  }, [page, count])
+
+  useEffect(() => {
+    getRecommend(user_id)
       .then((res) => {
-        const totalPage = res.length;
-        const hotelsPerPage = 100;
-        setTotalPage(Math.ceil(totalPage / hotelsPerPage));
-        const startIndex = (page -1) * hotelsPerPage;
-        const endIndex = startIndex + hotelsPerPage;
-        setHotels(res.slice(startIndex, endIndex));
+        setRcmd(res);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
-      
-  },[page])
+  }, [user_id]);
 
   const handlePageChange = (event, value) => {
     setPage(value);
-  }
+  };
 
   return (
     <div className=" sm:py-5">
       <div className="mb-6">
-        <h2 className="pb-5 text-4xl font-semibold text-center">Các điểm đến thu hút nhất Việt Nam</h2>
-        <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'>
+        <h2 className="pb-5 text-4xl font-semibold text-center">
+          Các điểm đến thu hút nhất Việt Nam
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
           {cityListHot.map((itemCity) => (
             <CityOutstanding
               key={itemCity.id}
@@ -141,9 +172,11 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div className='my-8'>
-        <h2 className="mb-8 text-4xl font-semibold text-center">Các điểm đến thu hút tại Việt Nam</h2>
-        <div className='flex flex-row gap-10 p-4 my-12 overflow-x-scroll scrollbar-hide'>
+      <div className="my-8">
+        <h2 className="mb-8 text-4xl font-semibold text-center">
+          Các điểm đến thu hút tại Việt Nam
+        </h2>
+        <div className="flex flex-row gap-10 p-4 my-12 overflow-x-scroll scrollbar-hide">
           {cityListHot?.map((item, index) => (
             <CityHot
               key={index}
@@ -154,28 +187,35 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div className='mt-20'>
-        <h2 className="my-16 text-4xl font-semibold text-center">Những khách sạn nổi bật đề xuất cho khách hàng</h2>
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-          {/* {hotels.map((imgItem) => (
-            <ImageSlider
-              key={imgItem.id}
-              name={imgItem.name}
-              image={imgItem.url}
-              price={imgItem.price}
-              rating={imgItem.rating}
-            />
-          ))} */}
-          {hotels.map((hotelItem = []) => (
-            <HotelHome
-              key={hotelItem.id}
-              hotelItem={hotelItem}
-            />
-          ))}
-        </div>
-        <div className='flex justify-center mt-8 text-center'>
-          <CustomIcons page={page} handlePageChange={handlePageChange} count={totalPage}/>
-        </div>
+      <div className="mt-20">
+        {currentUser ? (
+          <>
+            <h2 className="my-16 text-4xl font-semibold text-center">
+              Những khách sạn nổi bật đề xuất cho khách hàng
+            </h2>
+            <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+              {rcmd.map((rcmdItem = []) => (
+                <HotelHome key={rcmdItem.user_idd} rcmdItem={rcmdItem} />
+              ))}
+            </div>
+            
+          </>
+        ) : (
+          <>
+            <h2 className="my-16 text-4xl font-semibold text-center">
+              Những khách sạn trên Airbnb
+            </h2>
+            <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+              {hotels.map((hotelItem = []) => (
+                <HotelHome key={hotelItem.id} hotelItem={hotelItem} />
+              ))}
+            </div>
+          <div className="flex justify-center mt-8 text-center">
+            <CustomIcons page={page}  handlePageChange={handlePageChange} count={totalPage}/> 
+            {/* handlePageChange={handlePageChange} count={totalPage} */}
+          </div>
+          </>
+        )}
       </div>
     </div>
   );

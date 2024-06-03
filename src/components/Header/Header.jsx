@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link,  } from 'react-router-dom';
 import AccountMenu from './MenusUser/AccountMenu';
 
 
@@ -10,8 +10,10 @@ const Header = () => {
   
   //const [value, setValue] = useState(dayjs());
   const [scrolling, setScrolling] = useState(false);
+  
 
   useEffect(() => {
+    
     const handleScroll = () => {
       if (window.scrollY > 450) {
         setScrolling(true);

@@ -45,9 +45,9 @@ export default function AccountMenu() {
     }
   }
 
-  const { currentUser } = React.useContext(StorageContext); // Lấy dữ liệu từ context ; userData
+  const { currentUser, userData } = React.useContext(StorageContext); // Lấy dữ liệu từ context ; userData
   // console.log(currentUser);
-  // console.log(userData);
+  console.log(userData);
 
   return (
     <React.Fragment>
@@ -63,7 +63,7 @@ export default function AccountMenu() {
               <>
                 <FiMenu />
                 <AccountCircleIcon  className="text-[22px]"/> {/* Hiển thị avatar */}
-                <span className='text-[22px] text-black'>Tên: {currentUser.name}</span> {/* Hiển thị tên tài khoản, ở đây là userData ko phải là currentUser */}
+                <span className='text-[18px] text-black text-sm'>{userData.name}</span> {/* Hiển thị tên tài khoản, ở đây là userData ko phải là currentUser */}
               </>
             ) : (
               <>

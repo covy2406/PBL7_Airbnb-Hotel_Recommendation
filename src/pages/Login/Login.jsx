@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { setToken } from '../../services/local/cookie';
 import { StorageContext } from '../../context/Storage/StorageContext';
-import Cookies from 'universal-cookie';
+//import Cookies from 'universal-cookie';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Login = () => {
   const storage = useContext(StorageContext);
 
   const onSubmit = async (data) => {
-    console.log('in ra dataa', data);
+    //console.log('in ra dataa', data);
     try {
       const res = await signIn(data.email, data.password);
       setToken({ token: res.token });
@@ -27,10 +27,10 @@ const Login = () => {
       navigate('/');
       toast.success('Đăng nhập thành công', res);
 
-      const cookies = new Cookies(null, { path: '/' });
+      // const cookies = new Cookies(null, { path: '/' });
 
-      //cookies.set('myCat', 'Pacman');
-      console.log(cookies.get('token')); // Pacman
+      // //cookies.set('myCat', 'Pacman');
+      // console.log(cookies.get('token')); // Pacman
     } catch (err) {
       setError('password', {
         type: 'manual',
