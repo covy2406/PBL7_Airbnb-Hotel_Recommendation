@@ -9,6 +9,7 @@ import CustomIcons from '../../components/Pagination/Pagination';
 import { getHotel } from '../../api/apihotel';
 // import HotelComponent from '../../components/Hotels/Hotelcomponent';
 import HotelHome from './HotelHome';
+import HotelRecommendLogin from './HotelRecommendLogin';
 import { useParams } from 'react-router-dom';
 import { getRecommend } from '../../api/apiRecommend';
 import { StorageContext } from '../../context/Storage/StorageContext';
@@ -26,8 +27,9 @@ const Home = () => {
 
   const storage = useContext(StorageContext);
 
-  const user_id = useParams().id || storage.userData.id;
-  console.log('in ra id', user_id)
+  const params = useParams();
+  const user_id = params.id || storage.userData.id;
+  console.log('in ra id', user_id);
 
   // const imageList = [
   //   { id: 1, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 1 },
@@ -130,25 +132,27 @@ const Home = () => {
     //   .catch((err) => {
     //     console.log(err);
     //   })
-    
-    getHotel(page, count)
-    .then((res) => {
-      setHotels(res.data);
-      setTotalPage(Math.ceil(res.totalPages / count));
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  }, [page, count])
 
-  useEffect(() => {
-    getRecommend(user_id)
+    getHotel(page, count)
       .then((res) => {
-        setRcmd(res);
+        setHotels(res.data);
+        setTotalPage(Math.ceil(res.totalPages / count));
       })
       .catch((err) => {
         console.error(err);
       });
+  }, [page, count]);
+
+  useEffect(() => {
+    if (user_id) {
+      getRecommend(user_id)
+        .then((res) => {
+          setRcmd(res.user_id);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   }, [user_id]);
 
   const handlePageChange = (event, value) => {
@@ -194,11 +198,12 @@ const Home = () => {
               Những khách sạn nổi bật đề xuất cho khách hàng
             </h2>
             <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-              {rcmd.map((rcmdItem = []) => (
-                <HotelHome key={rcmdItem.user_idd} rcmdItem={rcmdItem} />
-              ))}
+              {rcmd.length > 0 ? (
+                rcmd.map((rcmdItem) => <HotelRecommendLogin key={rcmdItem.user_id} rcmdItem={rcmdItem} />)
+              ) : (
+                <p>Không có gợi ý khách sạn nào.</p>
+              )}
             </div>
-            
           </>
         ) : (
           <>
@@ -210,10 +215,10 @@ const Home = () => {
                 <HotelHome key={hotelItem.id} hotelItem={hotelItem} />
               ))}
             </div>
-          <div className="flex justify-center mt-8 text-center">
-            <CustomIcons page={page}  handlePageChange={handlePageChange} count={totalPage}/> 
-            {/* handlePageChange={handlePageChange} count={totalPage} */}
-          </div>
+            <div className="flex justify-center mt-8 text-center">
+              <CustomIcons page={page} handlePageChange={handlePageChange} count={totalPage} />
+              {/* handlePageChange={handlePageChange} count={totalPage} */}
+            </div>
           </>
         )}
       </div>
