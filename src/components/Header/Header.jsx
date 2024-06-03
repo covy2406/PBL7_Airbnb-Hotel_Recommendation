@@ -1,8 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
-import { Link,  } from 'react-router-dom';
+import { Link, useHistory  } from 'react-router-dom';
 import AccountMenu from './MenusUser/AccountMenu';
+import { getsearchRecommend } from '../../api/apiRecommend';
 
 
 
@@ -10,7 +11,9 @@ const Header = () => {
   
   //const [value, setValue] = useState(dayjs());
   const [scrolling, setScrolling] = useState(false);
-  
+  const [title_substring, setTitleSubstring] = useState('');
+  const history = useHistory();
+
 
   useEffect(() => {
     
@@ -28,6 +31,24 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (title_substring) {
+      getsearchRecommend(title_substring)
+        .then((res) => {
+          setTitleSubstring(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [title_substring]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (title_substring) {
+      history.push(`/search?title_substring=${title_substring}`);
+    }
+  };
 
   return (
     <>
@@ -58,12 +79,13 @@ const Header = () => {
                     //fullWidth
                     className="border-none outline-none w-[28rem] h-20"
                     variant="outlined"
+                    onChange={(e) => setTitleSubstring(e.target.value)}
                   />
                 </div>
               </div>
             </div>
             {/* bg-[#ff5a60] */}
-            <div className="flex bg-[#1976D2] p-4 w-[3rem] h-[3rem] rounded-full mx-4 cursor-pointer">
+            <div onSubmit={handleSearch} className="flex bg-[#1976D2] p-4 w-[3rem] h-[3rem] rounded-full mx-4 cursor-pointer">
               <FiSearch className="text-white cursor-pointer" />
             </div>
           </div>

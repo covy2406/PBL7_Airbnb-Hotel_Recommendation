@@ -13,9 +13,9 @@ export async function getRecommend(user_id) {
 }
 
 // api gợi ý khách sạn khi người dùng tìm kiếm
-export async function getsearchRecommend(title) {
+export async function getsearchRecommend(title_substring) {
   try {
-    const response = await axiosClientRecommend.get(`/search?title_substring=${title}`);
+    const response = await axiosClientRecommend.get(`/search?title_substring=${title_substring}`);
     console.log('in search', response.data)
     return response.data;
   } catch (err) {
