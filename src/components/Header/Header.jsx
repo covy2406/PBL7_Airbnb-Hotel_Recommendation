@@ -5,13 +5,11 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import AccountMenu from './MenusUser/AccountMenu';
 
 const Header = () => {
-  //const [value, setValue] = useState(dayjs());
   const [scrolling, setScrolling] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
   const [title_substring, setTitleSubstring] = useState(searchParams.get('title_substring') || '');
 
   const navigate = useNavigate();
-  //const history = useHistory();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +60,6 @@ const Header = () => {
                     label="Địa điểm"
                     placeholder="Địa điểm"
                     type="search"
-                    //fullWidth
                     className="border-none outline-none w-[24rem] h-20"
                     variant="outlined"
                     onChange={(e) => setTitleSubstring(e.target.value)}
