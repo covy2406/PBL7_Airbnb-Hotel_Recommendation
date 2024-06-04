@@ -230,7 +230,6 @@ const Home = () => {
             </div>
             <div className="flex justify-center mt-8 text-center">
               <CustomIcons page={page} handlePageChange={handlePageChange} count={totalPage} />
-              {/* handlePageChange={handlePageChange} count={totalPage} */}
             </div>
           </>
         )}

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import {
   TextField,
   Button,
@@ -20,13 +20,13 @@ import { signUp } from '../../api/apiUsers';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { jwtDecode } from 'jwt-decode';
-import Cookies from 'js-cookie';
-import { StorageContext } from '../../context/Storage/StorageContext';
+// import { jwtDecode } from 'jwt-decode';
+// import Cookies from 'js-cookie';
+// import { StorageContext } from '../../context/Storage/StorageContext';
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { setCurrentUser, setUserData } = useContext(StorageContext);
+  // const { setCurrentUser, setUserData } = useContext(StorageContext);
   const { handleSubmit, control, setError } = useForm();
   const [submitted, setSubmitted] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -42,12 +42,12 @@ const Signup = () => {
     //   return;
     // }
 
-    const phoneRegex = /^\+[0-9]{10,15}$/;
-    if (!phoneRegex.test(`${phoneCode}${phoneNumber}`)) {
-      toast.warning('Vui lòng nhập số điện thoại hợp lệ');
-      setError('phoneNumber', { type: 'manual', message: 'Số điện thoại không hợp lệ' });
-      return;
-    }
+    // const phoneRegex = /^\+[0-9]{10}$/;
+    // if (!phoneRegex.test(`${phoneCode}${phoneNumber}`)) {
+    //   toast.warning('Vui lòng nhập số điện thoại hợp lệ');
+    //   setError('phoneNumber', { type: 'manual', message: 'Số điện thoại không hợp lệ' });
+    //   return;
+    // }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -64,28 +64,19 @@ const Signup = () => {
     }
 
     const fullPhoneNumber = `${phoneCode}${phoneNumber}`;
-
+    const formattedDateOfBirth = dateOfBirth ? dayjs(dateOfBirth).format('YYYY-MM-DD') : null;
     try {
       setSubmitted(true);
-      const response = await signUp({
+      await signUp({
         name,
         email,
         password,
         address,
         province,
-        dateOfBirth,
+        dateOfBirth: formattedDateOfBirth,
         phoneNumber: fullPhoneNumber,
         roles: { name: role }
       });
-
-      const authToken = response.token;
-      localStorage.setItem('authToken', authToken);
-      Cookies.set('authToken', authToken);
-
-      const decodedToken = jwtDecode(authToken);
-
-      setCurrentUser(true);
-      setUserData(decodedToken);
       toast.success('Bạn đã đăng ký tài khoản thành công!');
       navigate('/login');
     } catch (error) {
