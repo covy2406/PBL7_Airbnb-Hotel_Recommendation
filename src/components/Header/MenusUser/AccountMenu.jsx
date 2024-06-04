@@ -47,7 +47,7 @@ export default function AccountMenu() {
 
   const { currentUser, userData } = React.useContext(StorageContext); // Lấy dữ liệu từ context ; userData
   // console.log(currentUser);
-  console.log(userData);
+  // console.log(userData);
 
   return (
     <React.Fragment>
@@ -109,9 +109,11 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClose} component={Link} to={'/login'}>
-          <Avatar /> Đăng nhập
-        </MenuItem>
+        {!currentUser  && (
+          <MenuItem onClick={handleClose} component={Link} to={'/login'}>
+            <Avatar /> Đăng nhập
+          </MenuItem>
+        )}
         <MenuItem onClick={handleClose} component={Link} to={'/signup'}>
           <Avatar /> Đăng ký
         </MenuItem>

@@ -12,6 +12,7 @@ import Signup from './pages/Signup/Signup';
 import HomePage from './pages/Home/Home';
 import DetailLayout from './layouts/DetailLayout/DetailLayout';
 import Detail from './pages/Detail/Detail';
+import Search from './pages/Search/Search';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -29,6 +30,9 @@ const App = () => {
         </Route>
         <Route path='/login' element={<HeaderOnlyLayout/>}>
           <Route index element={<Login/>}/>
+        </Route>
+        <Route path='/search' element={<HeaderOnlyLayout/>}>
+          <Route index element={<Search/>}/>
         </Route>
       </>,
     ),

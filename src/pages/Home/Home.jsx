@@ -9,7 +9,6 @@ import CustomIcons from '../../components/Pagination/Pagination';
 import { getHotel } from '../../api/apihotel';
 // import HotelComponent from '../../components/Hotels/Hotelcomponent';
 import HotelHome from './HotelHome';
-import HotelRecommendLogin from './HotelRecommendLogin';
 import { useParams } from 'react-router-dom';
 import { getRecommend, getsearchRecommend } from '../../api/apiRecommend';
 import { StorageContext } from '../../context/Storage/StorageContext';
@@ -213,9 +212,9 @@ const Home = () => {
             </h2>
             <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
               {rcmd.length > 0 ? (
-                rcmd.map((rcmdItem) => <HotelRecommendLogin key={rcmdItem.user_id} rcmdItem={rcmdItem} />)
+                rcmd.map((hotelItem) => <HotelHome key={hotelItem.id} hotelItem={hotelItem} />)
               ) : (
-                <p>Không có gợi ý khách sạn nào.</p>
+                <p className='text-center'>Không có gợi ý khách sạn nào.</p>
               )}
             </div>
           </>
@@ -225,7 +224,7 @@ const Home = () => {
               Những khách sạn trên Airbnb
             </h2>
             <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-              {hotels.map((hotelItem = []) => (
+              {hotels.map((hotelItem) => (
                 <HotelHome key={hotelItem.id} hotelItem={hotelItem} />
               ))}
             </div>

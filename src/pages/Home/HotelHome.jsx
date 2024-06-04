@@ -7,21 +7,6 @@ import { BsStarFill } from 'react-icons/bs';
 
 
 const HotelHome = ({ hotelItem }) => {
-  
-  // const [rcmd , setRcmd] = useState([]);
-
-  // let {id} = useParams();
-
-  // useEffect(() => {
-  //   getRecommend(id)
-  //     .then((res) => {
-  //       setRcmd(res);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-
-  // }, [id]);
 
   return (
     <>
