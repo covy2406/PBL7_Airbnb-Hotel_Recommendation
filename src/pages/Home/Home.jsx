@@ -10,7 +10,7 @@ import { getHotel } from '../../api/apihotel';
 // import HotelComponent from '../../components/Hotels/Hotelcomponent';
 import HotelHome from './HotelHome';
 import { useParams } from 'react-router-dom';
-import { getRecommend, getsearchRecommend } from '../../api/apiRecommend';
+import { getRecommend } from '../../api/apiRecommend';
 import { StorageContext } from '../../context/Storage/StorageContext';
 // import HotelHome from './HotelHome';
 
@@ -29,28 +29,6 @@ const Home = () => {
   const params = useParams();
   const user_id = params.id || storage.userData.id;
   console.log('in ra id', user_id);
-
-  const [title_substring, setTitleSubstring] = useState('');
-
-  // const imageList = [
-  //   { id: 1, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 1 },
-  //   { id: 2, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 3 },
-  //   { id: 3, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 5 },
-  //   { id: 4, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 5 },
-  //   { id: 5, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 5 },
-  //   { id: 6, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 3 },
-  //   { id: 7, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 4 },
-  //   { id: 8, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 4 },
-  //   { id: 9, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 3 },
-  //   { id: 10, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 5 },
-  //   { id: 11, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 5 },
-  //   { id: 12, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 4 },
-  //   { id: 13, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 4 },
-  //   { id: 14, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 5 },
-  //   { id: 15, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 3 },
-  //   { id: 16, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 4 },
-  //   { id: 17, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 3 },
-  // ];
 
   const cityListHot = [
     {
@@ -155,18 +133,6 @@ const Home = () => {
         });
     }
   }, [user_id]);
-
-  useEffect(() => {
-    if (title_substring) {
-      getsearchRecommend(title_substring)
-        .then((res) => {
-          setTitleSubstring(res);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }, [title_substring]);
 
   const handlePageChange = (event, value) => {
     setPage(value);
