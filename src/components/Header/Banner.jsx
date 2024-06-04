@@ -67,8 +67,8 @@ const Banner = () => {
                 objectFit="cover"
                 className='w-full h-full quality-100'
               />
-              <div className='absolute w-full text-3xl text-center bg-transparent top-1/2'>
-                <p className='text-3xl text-gray-50 '>You don't know where to rent a hotel ?</p>
+              <div className='absolute w-full text-3xl text-center bg-gray-100 bg-opacity-10 top-1/2'>
+                <p className='text-3xl text-white '>You don't know where to rent a hotel ?</p>
                 <p className='text-2xl text-white'> Here are the options that best suit you</p>
               </div>
             </div>
