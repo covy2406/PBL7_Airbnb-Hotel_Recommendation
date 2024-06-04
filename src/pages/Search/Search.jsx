@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { BsStarFill } from 'react-icons/bs';
 import { getsearchRecommend } from '../../api/apiRecommend';
 
-
-
 const Search = () => {
   const [data, setData] = useState([]);
   const [title_substring, setTitleSubstring] = useState('');
