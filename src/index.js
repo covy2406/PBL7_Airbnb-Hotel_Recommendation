@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import  StorageContextUser from './context/Storage/StorageContext';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <StorageContextUser>
+      <App />
+    </StorageContextUser>
   </React.StrictMode>
 );
 

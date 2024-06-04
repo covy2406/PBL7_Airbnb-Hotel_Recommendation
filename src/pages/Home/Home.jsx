@@ -1,33 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import ImageSlider from './ImageSlider';
-import ImageHotel from '../../assets/images/ImageHotel.jpg';
+import React, { useContext } from 'react';
+import { useEffect, useState } from 'react';
+//import ImageSlider from './ImageSlider';
+//import ImageHotel from '../../assets/images/ImageHotel.jpg';
 import CityOutstanding from '../../components/CityOutstanding/CityOutstanding';
 import CityHot from './MediumCard/CityHot';
 import CustomIcons from '../../components/Pagination/Pagination';
-import { getCities } from '../../api/apiCities';
+//import { getCities } from '../../api/apiCities';
+import { getHotel } from '../../api/apihotel';
+// import HotelComponent from '../../components/Hotels/Hotelcomponent';
+import HotelHome from './HotelHome';
+import { useParams } from 'react-router-dom';
+import { getRecommend, getsearchRecommend } from '../../api/apiRecommend';
+import { StorageContext } from '../../context/Storage/StorageContext';
+// import HotelHome from './HotelHome';
 
 const Home = () => {
-  const [cities, setCities] = useState([])
+  //const [cities, setCities] = useState([])
+  const [page, setPage] = useState(1); // Trang hiện tại
+  const [hotels, setHotels] = useState([]); // Du lieu khach san hien tai
+  const [totalPage, setTotalPage] = useState(0); // Tong so trang
+  const [rcmd, setRcmd] = useState([]);
+  const count = 12; // Số lượng khách sạn trên mỗi trang
 
-  const imageList = [
-    { id: 1, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 1 },
-    { id: 2, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 3 },
-    { id: 3, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 5 },
-    { id: 4, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 5 },
-    { id: 5, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 5 },
-    { id: 6, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 3 },
-    { id: 7, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 4 },
-    { id: 8, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 4 },
-    { id: 9, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 3 },
-    { id: 10, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 5 },
-    { id: 11, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 5 },
-    { id: 12, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 4 },
-    { id: 13, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 4 },
-    { id: 14, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 5 },
-    { id: 15, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 3 },
-    { id: 16, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 4 },
-    { id: 17, title: 'JWMariot, Sai Gon', image: ImageHotel, price: '14.353 vnđ', rating: 3 },
-  ];
+  const { currentUser } = useContext(StorageContext);
+
+  const storage = useContext(StorageContext);
+
+  const params = useParams();
+  const user_id = params.id || storage.userData.id;
+  console.log('in ra id', user_id);
+
+  const [title_substring, setTitleSubstring] = useState('');
+
+  // const imageList = [
+  //   { id: 1, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 1 },
+  //   { id: 2, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 3 },
+  //   { id: 3, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 5 },
+  //   { id: 4, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 5 },
+  //   { id: 5, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 5 },
+  //   { id: 6, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 3 },
+  //   { id: 7, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 4 },
+  //   { id: 8, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 4 },
+  //   { id: 9, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 3 },
+  //   { id: 10, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 5 },
+  //   { id: 11, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 5 },
+  //   { id: 12, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 4 },
+  //   { id: 13, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 4 },
+  //   { id: 14, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 5 },
+  //   { id: 15, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 3 },
+  //   { id: 16, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 4 },
+  //   { id: 17, name: 'JWMariot, Sai Gon', url: ImageHotel, price: '14.353 vnđ', rating: 3 },
+  // ];
 
   const cityListHot = [
     {
@@ -88,33 +111,89 @@ const Home = () => {
 
   // call api
   useEffect(() => {
-    getCities()
+    // getCities()
+    //   .then((res) => {
+    //     setCities(res);
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    // getHotel()
+    //   .then((res) => {
+    //   //   const totalPage = res.length;
+    //   //   const hotelsPerPage = 100;
+    //   //   setTotalPage(Math.ceil(totalPage / hotelsPerPage));
+    //   //   const startIndex = (page - 1) * hotelsPerPage;
+    //   //   const endIndex = startIndex + hotelsPerPage;
+    //   //   setHotels(res.slice(startIndex, endIndex));
+    //     setHotels(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   })
+
+    getHotel(page, count)
       .then((res) => {
-        setCities(res.data);
+        setHotels(res.data);
+        setTotalPage(Math.ceil(res.totalPages / count));
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
-  },[])
+  }, [page, count]);
+
+  useEffect(() => {
+    if (user_id) {
+      getRecommend(user_id)
+        .then((res) => {
+          setRcmd(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [user_id]);
+
+  useEffect(() => {
+    if (title_substring) {
+      getsearchRecommend(title_substring)
+        .then((res) => {
+          setTitleSubstring(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [title_substring]);
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
 
   return (
     <div className=" sm:py-5">
       <div className="mb-6">
-        <h2 className="pb-5 text-4xl font-semibold text-center">Các điểm đến thu hút nhất Việt Nam</h2>
-        <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'>
-          {cities?.map((itemCity, index) => (
+        <h2 className="pb-5 text-4xl font-semibold text-center">
+          Các điểm đến thu hút nhất Việt Nam
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+          {cityListHot.map((itemCity) => (
             <CityOutstanding
-              key={index}
+              key={itemCity.id}
               url={itemCity.url}
-              cityName={itemCity.cityName}
+              CityName={itemCity.CityName}
               hotelQuantity={itemCity.hotelQuantity}
             />
           ))}
         </div>
       </div>
-      <div className='my-8'>
-        <h2 className="mb-8 text-4xl font-semibold text-center">Các điểm đến thu hút tại Việt Nam</h2>
-        <div className='flex flex-row gap-10 p-4 my-12 overflow-x-scroll scrollbar-hide'>
+      <div className="my-8">
+        <h2 className="mb-8 text-4xl font-semibold text-center">
+          Các điểm đến thu hút tại Việt Nam
+        </h2>
+        <div className="flex flex-row gap-10 p-4 my-12 overflow-x-scroll scrollbar-hide">
           {cityListHot?.map((item, index) => (
             <CityHot
               key={index}
@@ -125,22 +204,36 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div className='mt-20'>
-        <h2 className="my-16 text-4xl font-semibold text-center">Những khách sạn nổi bật đề xuất cho khách hàng</h2>
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-          {imageList.map((imgItem) => (
-            <ImageSlider
-              key={imgItem.id}
-              title={imgItem.title}
-              image={imgItem.image}
-              price={imgItem.price}
-              rating={imgItem.rating}
-            />
-          ))}
-        </div>
-        <div className='flex justify-center mt-8 text-center'>
-          <CustomIcons/>
-        </div>
+      <div className="mt-20">
+        {currentUser ? (
+          <>
+            <h2 className="my-16 text-4xl font-semibold text-center">
+              Những khách sạn nổi bật đề xuất cho khách hàng
+            </h2>
+            <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+              {rcmd.length > 0 ? (
+                rcmd.map((hotelItem) => <HotelHome key={hotelItem.id} hotelItem={hotelItem} />)
+              ) : (
+                <p className='text-center'>Không có gợi ý khách sạn nào.</p>
+              )}
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 className="my-16 text-4xl font-semibold text-center">
+              Những khách sạn trên Airbnb
+            </h2>
+            <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+              {hotels.map((hotelItem) => (
+                <HotelHome key={hotelItem.id} hotelItem={hotelItem} />
+              ))}
+            </div>
+            <div className="flex justify-center mt-8 text-center">
+              <CustomIcons page={page} handlePageChange={handlePageChange} count={totalPage} />
+              {/* handlePageChange={handlePageChange} count={totalPage} */}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ import Signup from './pages/Signup/Signup';
 import HomePage from './pages/Home/Home';
 import DetailLayout from './layouts/DetailLayout/DetailLayout';
 import Detail from './pages/Detail/Detail';
+import Search from './pages/Search/Search';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -21,11 +22,17 @@ const App = () => {
           <Route index element={<HomePage/>}/>
         </Route>
         <Route element={<DetailLayout/>}>
-          <Route path='/detail' element={<Detail/>}/>
+          <Route path='/hotels/:id/*' element={<Detail/>}/>
         </Route>
-        <Route  element={<HeaderOnlyLayout />}>
-          <Route path="/login" element={<Login></Login>} />
-          <Route path="/signup" element={<Signup></Signup>} />
+        <Route path='/signup'  element={<HeaderOnlyLayout />}>
+          {/* <Route path="/login" element={<Login></Login>} /> */}
+          <Route index element={<Signup></Signup>} />
+        </Route>
+        <Route path='/login' element={<HeaderOnlyLayout/>}>
+          <Route index element={<Login/>}/>
+        </Route>
+        <Route path='/search' element={<HeaderOnlyLayout/>}>
+          <Route index element={<Search/>}/>
         </Route>
       </>,
     ),

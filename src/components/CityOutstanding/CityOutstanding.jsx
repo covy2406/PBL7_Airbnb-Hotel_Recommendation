@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const CityOutstanding = ({url, cityName, hotelQuantity}) => {
+const CityOutstanding = ({url, name, hotelQuantity}) => {
 
   return (
     <>
@@ -12,7 +12,7 @@ const CityOutstanding = ({url, cityName, hotelQuantity}) => {
             <div className="relative w-24 h-24">
               <img
                 src={url}
-                alt={cityName}
+                alt={name}
                 layout="fill"
                 className="rounded-lg"
               />
@@ -21,7 +21,7 @@ const CityOutstanding = ({url, cityName, hotelQuantity}) => {
             {/* right */}
             <div className="flex">
               <div>
-                <h2>{cityName}</h2>
+                <h2>{name}</h2>
                 <h2 className="text-gray-500">{hotelQuantity}</h2>
               </div>
             </div>
