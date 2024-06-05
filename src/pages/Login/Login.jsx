@@ -25,13 +25,17 @@ const Login = () => {
       storage.setCurrentUser(true);
       storage.setUserData(res.token);
       console.log(res.status);
-      if(res.status === 201) {
-        console.log(res.status);
-        toast.success('Đăng nhập thành công');
-        setTimeout(() => {
-          navigate('/');
-        }, 1000)
-      } 
+      toast.success('Đăng nhập thành công');
+      setTimeout(() => {
+        navigate('/');      
+      }, 1000)
+      // if(res.status === 201) {
+      //   console.log(res.status);
+      //   toast.success('Đăng nhập thành công');
+      //   setTimeout(() => {
+      //     navigate('/');
+      //   }, 1000)
+      // } 
 
       // const cookies = new Cookies(null, { path: '/' });
 
