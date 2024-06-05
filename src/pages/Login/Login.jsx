@@ -24,8 +24,14 @@ const Login = () => {
       setToken({ token: res.token });
       storage.setCurrentUser(true);
       storage.setUserData(res.token);
-      navigate('/');
-      toast.success('Đăng nhập thành công', res);
+      console.log(res.status);
+      if(res.status === 201) {
+        console.log(res.status);
+        toast.success('Đăng nhập thành công');
+        setTimeout(() => {
+          navigate('/');
+        }, 1000)
+      } 
 
       // const cookies = new Cookies(null, { path: '/' });
 
