@@ -75,13 +75,9 @@ const Signup = () => {
         roles: { name: role }
       });
       toast.success('Bạn đã đăng ký tài khoản thành công!');
-      navigate('/login');
-      // if(res === 201) {
-      //   toast.success('Bạn đã đăng ký tài khoản thành công!');
-      //   setTimeout(() => {
-      //     navigate('/login');
-      //   }, 1000)
-      // }
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000)
     } catch (error) {
       if (error.response && error.response.data) {
         toast.warning(error.response.data.message);

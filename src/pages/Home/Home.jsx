@@ -1,21 +1,18 @@
 import React, { useContext } from 'react';
 import { useEffect, useState } from 'react';
-//import ImageSlider from './ImageSlider';
-//import ImageHotel from '../../assets/images/ImageHotel.jpg';
 import CityOutstanding from '../../components/CityOutstanding/CityOutstanding';
 import CityHot from './MediumCard/CityHot';
 import CustomIcons from '../../components/Pagination/Pagination';
-//import { getCities } from '../../api/apiCities';
 import { getHotel } from '../../api/apihotel';
-// import HotelComponent from '../../components/Hotels/Hotelcomponent';
-import HotelHome from './HotelHome';
+import HotelHomeNoLogin from '../../components/HotelHomeNoLogin/HotelHomeNoLogin';
 import { useParams } from 'react-router-dom';
 import { getRecommend } from '../../api/apiRecommend';
 import { StorageContext } from '../../context/Storage/StorageContext';
-// import HotelHome from './HotelHome';
+import { getCities } from '../../api/apiCities';
+import HotelRecommendLogin from '../../components/HotelRecommendLogin/HotelRecommendLogin';
 
 const Home = () => {
-  //const [cities, setCities] = useState([])
+  const [cities, setCities] = useState([]);
   const [page, setPage] = useState(1); // Trang hiện tại
   const [hotels, setHotels] = useState([]); // Du lieu khach san hien tai
   const [totalPage, setTotalPage] = useState(0); // Tong so trang
@@ -28,7 +25,7 @@ const Home = () => {
 
   const params = useParams();
   const user_id = params.id || storage.userData.id;
-  console.log('in ra id', user_id);
+  //console.log('in ra id', user_id);
 
   const cityListHot = [
     {
@@ -89,14 +86,14 @@ const Home = () => {
 
   // call api
   useEffect(() => {
-    // getCities()
-    //   .then((res) => {
-    //     setCities(res);
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    getCities()
+      .then((res) => {
+        setCities(res);
+        //console.log('in ra cities',res); res trả về danh sách các thành phố
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     // getHotel()
     //   .then((res) => {
@@ -115,7 +112,7 @@ const Home = () => {
     getHotel(page, count)
       .then((res) => {
         setHotels(res.data);
-        setTotalPage(Math.ceil(res.totalPages / count));
+        setTotalPage(Math.ceil(res.count / count));
       })
       .catch((err) => {
         console.error(err);
@@ -140,22 +137,8 @@ const Home = () => {
 
   return (
     <div className=" sm:py-5">
-      <div className="mb-6">
-        <h2 className="pb-5 text-4xl font-semibold text-center">
-          Các điểm đến thu hút nhất Việt Nam
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-          {cityListHot.map((itemCity) => (
-            <CityOutstanding
-              key={itemCity.id}
-              url={itemCity.url}
-              CityName={itemCity.CityName}
-              hotelQuantity={itemCity.hotelQuantity}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="my-8">
+      {/* CÁC THÀNH PHỐ NỔI BẬT, THU HÚT NHẤT */}
+      <div className="mt-6 mb-8">
         <h2 className="mb-8 text-4xl font-semibold text-center">
           Các điểm đến thu hút tại Việt Nam
         </h2>
@@ -170,19 +153,37 @@ const Home = () => {
           ))}
         </div>
       </div>
+      {/* DANH SÁCH CÁC KHÁCH SẠN || CÁC KHÁCH SẠN NỔI BẬT ĐỀ XUẤT CHO KHÁCH HÀNG */}
       <div className="mt-20">
         {currentUser ? (
           <>
-            <h2 className="my-16 text-4xl font-semibold text-center">
-              Những khách sạn nổi bật đề xuất cho khách hàng
-            </h2>
-            <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-              {rcmd.length > 0 ? (
-                rcmd.map((hotelItem) => <HotelHome key={hotelItem.id} hotelItem={hotelItem} />)
-              ) : (
-                <p className='text-center'>Không có gợi ý khách sạn nào.</p>
-              )}
-            </div>
+            {rcmd.length > 0 ? (
+              <>
+                <h2 className="my-16 text-4xl font-semibold text-center">
+                  Những khách sạn nổi bật đề xuất cho khách hàng
+                </h2>
+                <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+                  {rcmd.map((rcmdItem) => (
+                    <HotelRecommendLogin key={rcmdItem.id} rcmdItem={rcmdItem} />
+                  ))}
+                </div>
+              </>
+            ) : (
+              // <p className='justify-center text-lg font-medium text-center uppercase'>Chưa có khách sạn nào được gợi ý với bạn. Hãy xem những khách sạn của chúng tôi để có gợi ý tốt nhất</p>
+              <>
+                <h2 className="my-16 text-4xl font-semibold text-center">
+                  Những khách sạn trên Airbnb
+                </h2>
+                <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+                  {hotels.map((hotelItem) => (
+                    <HotelHomeNoLogin key={hotelItem.id} hotelItem={hotelItem} />
+                  ))}
+                </div>
+                <div className="flex justify-center mt-8 text-center">
+                  <CustomIcons page={page} handlePageChange={handlePageChange} count={totalPage} />
+                </div>
+              </>
+            )}
           </>
         ) : (
           <>
@@ -191,7 +192,7 @@ const Home = () => {
             </h2>
             <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
               {hotels.map((hotelItem) => (
-                <HotelHome key={hotelItem.id} hotelItem={hotelItem} />
+                <HotelHomeNoLogin key={hotelItem.id} hotelItem={hotelItem} />
               ))}
             </div>
             <div className="flex justify-center mt-8 text-center">
@@ -199,6 +200,17 @@ const Home = () => {
             </div>
           </>
         )}
+      </div>
+      {/* CITIES: CÁC THÀNH PHỐ */}
+      <div className="mt-20 mb-8 text-center">
+        <h2 className="pb-5 text-4xl font-semibold text-center">
+          Các thành phố du lịch tại Việt Nam
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+          {cities.map((itemCity, index) => (
+            <CityOutstanding key={index} itemCity={itemCity} />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -7,22 +7,6 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 //import { getHotel } from '../../api/apihotel';
 
 export default function CustomIcons({ page, handlePageChange, count }) {
-  //const [page, setPage] = React.useState(1);
-  // const [hotels, setHotels] = React.useState([]);
-
-  // React.useEffect(() => {
-  //   getHotel()
-  //     .then((res) => {
-  //       setHotels(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [page])
-
-  // const handlePageChange = (event, value) => {
-  //   setPage(value);
-  // }
 
   return (
     <Stack spacing={2}>

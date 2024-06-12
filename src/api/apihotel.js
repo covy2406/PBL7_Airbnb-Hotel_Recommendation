@@ -12,7 +12,6 @@ export async function getHotel(page, count) {
 }
 
 // api lấy chi tiết khách sạn
-
 export async function getDetailHotel(id) {
   try {
     const res = await axiosClient.get(`/hotels/${id}`);

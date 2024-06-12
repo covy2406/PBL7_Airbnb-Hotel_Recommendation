@@ -13,6 +13,11 @@ import HomePage from './pages/Home/Home';
 import DetailLayout from './layouts/DetailLayout/DetailLayout';
 import Detail from './pages/Detail/Detail';
 import Search from './pages/Search/Search';
+import PageCity from './pages/City/PageCity';
+import AccountInfo from './pages/AccountInfo/AccountInfo';
+import Profile from './pages/Profile/Profile';
+// import History from './pages/History/History';
+import HistoryComponent from './pages/History/HistoryComponent';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -23,18 +28,19 @@ const App = () => {
         </Route>
         <Route element={<DetailLayout/>}>
           <Route path='/hotels/:id/*' element={<Detail/>}/>
+          <Route path='/search' element={<Search/>}/>
+          <Route path='/cities/:id/*' element={<PageCity/>}/>
+          <Route path='/accountInfo/*' element={<AccountInfo/>}/>
+          <Route path='/accountInfo/profile' element={<Profile/>}/> 
+          <Route path='/accountInfo/history' element={<HistoryComponent/>}/>           
         </Route>
         <Route path='/signup'  element={<HeaderOnlyLayout />}>
-          {/* <Route path="/login" element={<Login></Login>} /> */}
           <Route index element={<Signup></Signup>} />
         </Route>
         <Route path='/login' element={<HeaderOnlyLayout/>}>
           <Route index element={<Login/>}/>
         </Route>
-        <Route path='/search' element={<HeaderOnlyLayout/>}>
-          <Route index element={<Search/>}/>
-        </Route>
-      </>,
+      </>
     ),
   );
   return (

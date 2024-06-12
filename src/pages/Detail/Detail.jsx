@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { MdPlace } from 'react-icons/md';
-// import { BsStarFill } from 'react-icons/bs';
-// import { IoWifi } from 'react-icons/io5';
-// import { LuParkingCircle } from 'react-icons/lu';
-// import { IoLogoNoSmoking } from 'react-icons/io';
-// import { CiMoneyCheck1 } from 'react-icons/ci';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import {
   MdOutlineHotel,
@@ -15,6 +10,7 @@ import {
 import { GiNightSleep } from 'react-icons/gi';
 import { getDetailHotel } from '../../api/apihotel';
 import { useParams } from 'react-router-dom';
+import Comment from '../../components/Comment/Comment';
 //import { IoMdCheckmark } from "react-icons/io";
 
 const Detail = () => {
@@ -31,24 +27,6 @@ const Detail = () => {
       });
   }, [id]);
 
-  //const facilities = Array.isArray(detailHotel.facilities) ? detailHotel.facilities : [];
-
-  // Đảm bảo chuyển đổi chuỗi facilities thành mảng
-  //const parsedFacilities = facilities.length ? JSON.parse(detailHotel.facilities.replace(/'/g, '"')) : [];
-
-  // Map facility names to corresponding icons
-  // const facilityIcons = {
-  //   wifi: <IoWifi />,
-  //   parking: <LuParkingCircle />,
-  //   non_smoking: <IoLogoNoSmoking />,
-  //   group: <FaPeopleGroup />,
-  //   hotel: <MdOutlineHotel />,
-  //   cleaning: <MdOutlineCleaningServices />,
-  //   place: <MdOutlinePlace />,
-  //   night_sleep: <GiNightSleep />,
-  //   money_check: <CiMoneyCheck1 />,
-  // };
-
   return (
     <>
       <div className="mx-4 my-16">
@@ -62,13 +40,45 @@ const Detail = () => {
         <p className="text-sm font-semibold text-blue-700 cursor-pointer">
           Hiển thị ví trí trên bảng đồ
         </p>
-        <div className="py-4 ">
-          <img
-            src={detailHotel.image}
-            alt={detailHotel.name}
-            layout="fill"
-            className="relative w-full rounded-xl h-96"
-          />
+        <div className="flex items-center justify-center w-full py-4 rounded-xl">
+          <div>
+            <img
+              src={detailHotel.image}
+              alt={detailHotel.name}
+              layout="fill"
+              className="relative w-[400px] h-96 m-1"
+            />
+          </div>
+          <div className='flex items-center'>
+            <div>
+              <img
+                src={detailHotel.image}
+                alt={detailHotel.name}
+                layout="fill"
+                className="relative w-[400px] h-48 m-1"
+              />
+              <img
+                src={detailHotel.image}
+                alt={detailHotel.name}
+                layout="fill"
+                className="relative w-[400px] h-48 m-1"
+              />
+            </div>
+            <div>
+              <img
+                src={detailHotel.image}
+                alt={detailHotel.name}
+                layout="fill"
+                className="relative w-[400px] h-48 m-1"
+              />
+              <img
+                src={detailHotel.image}
+                alt={detailHotel.name}
+                layout="fill"
+                className="relative w-[400px] h-48 m-1"
+              />
+            </div>
+          </div>
           {/* <ImagesDetail/> */}
         </div>
         <div className="mt-6 mb-12">
@@ -235,15 +245,14 @@ const Detail = () => {
                 {/* < BsStarFill className='text-sm'/> */}
               </div>
               <div className="items-center">
-                <p className="text-xl font-medium underline cursor-pointer">
-                  {detailHotel.reviewCount} Đánh giá
+                <p className="text-xl font-medium cursor-pointer">
+                  {detailHotel.HotelRatings?.length} Đánh giá
                 </p>
               </div>
             </div>
           </div>
         </div>
         <div className="my-12">
-          {/* <h1 className='text-2xl font-semibold'>Các tiện nghi của khách sạn</h1> */}
           <div className="mt-4 mb-4 ">
             <h2 className="mb-2 text-2xl font-semibold ">Các tiện nghi được ưa chuộng nhất</h2>
             <div className="grid items-center grid-cols-2 gap-4 pb-6 border-b sm:grid-cols-3 md:grid-cols-4 text-2sm">
@@ -255,15 +264,12 @@ const Detail = () => {
                     let cleanFacility = facility.trim().slice(1, -1); // Loại bỏ dấu ngoặc đơn và khoảng trắng thừa
                     return (
                       <div key={index} className="flex items-center">
-                       
-                        <span className="ml-1 mr-4 font-semibold text-blue-600 ">{cleanFacility}</span>
+                        <span className="ml-1 mr-4 font-semibold text-blue-600 ">
+                          {cleanFacility}
+                        </span>
                       </div>
                     );
                   })}
-              {/* <IoLogoNoSmoking/> <span className='ml-1 mr-4'>{detailHotel.facilities[1]}</span>
-              <IoWifi className='text-green'/> <span className='ml-1 mr-4'>{detailHotel.facilities[2]}</span>
-              <LuParkingCircle/> <span className='ml-1 mr-4'>{detailHotel.facilities[3]}</span>
-              <FaPeopleGroup/> <span className='ml-1 mr-4'>{detailHotel.facilities[4]}</span> */}
             </div>
             <h2 className="mt-6 text-2xl font-semibold">Đánh giá của khách hàng</h2>
             <div className="items-center mx-auto mt-10 text-center">
@@ -327,21 +333,16 @@ const Detail = () => {
                 </p>
                 <MdOutlinePlace />
               </div>
-              {/* <div className="p-2 border-r w-44">
-                <p className="text-lg">Đáng giá tiền</p>
-                <p className="items-center w-10 p-[5px] text-lg mb-4 text-center text-white bg-blue-500 rounded-lg">
-                  9.6
-                </p>
-                <CiMoneyCheck1 />
-              </div>
-              <div className="p-2 w-44">
-                <p className="text-lg">Wifi miễn phí</p>
-                <p className="items-center w-10 p-[5px] text-lg mb-4 text-center text-white bg-blue-500 rounded-lg">
-                  9.6
-                </p>
-                <MdOutlineWifi />
-              </div> */}
             </div>
+          </div>
+        </div>
+        <div className="my-12">
+          <div className="grid items-center grid-cols-2 gap-4 pb-6 sm:grid-cols-1 md:grid-cols-2 text-2sm">
+            {detailHotel.HotelRatings > 0 ? (
+              detailHotel.HotelRatings?.map((cmt, index) => <Comment cmt={cmt} key={index} />)
+            ) : (
+              <p className="uppercase text-2lg">Chưa có nhận xét nào về khách sạn</p>
+            )}
           </div>
         </div>
       </div>
