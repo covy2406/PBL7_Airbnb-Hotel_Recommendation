@@ -2,7 +2,7 @@ import React from 'react';
 import HomeIcon from '@mui/icons-material/Home';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import SettingsIcon from '@mui/icons-material/Settings';
-import PersonIcon from '@mui/icons-material/Person';
+// import PersonIcon from '@mui/icons-material/Person';
 
 export const AdminNavbarsList = [
   {
@@ -15,11 +15,11 @@ export const AdminNavbarsList = [
     path: '/admin/crawling',
     icon: <RocketLaunchIcon />
   },
-  {
-    displayName: 'Users',
-    path: '/admin/users',
-    icon: <PersonIcon />
-  },
+  // {
+  //   displayName: 'Users',
+  //   path: '/admin/users',
+  //   icon: <PersonIcon />
+  // },
   {
     displayName: 'Setting',
     path: '/admin/setting',

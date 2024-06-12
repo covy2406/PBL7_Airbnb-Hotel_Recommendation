@@ -64,7 +64,7 @@
     "autoprefixer": "^10.4.17",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "postcss": "^8.4.35",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.3"
   }
