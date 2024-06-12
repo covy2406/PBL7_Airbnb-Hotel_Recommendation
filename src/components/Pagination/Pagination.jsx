@@ -4,13 +4,17 @@ import PaginationItem from '@mui/material/PaginationItem';
 import Stack from '@mui/material/Stack';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+//import { getHotel } from '../../api/apihotel';
 
-export default function CustomIcons() {
+export default function CustomIcons({ page, handlePageChange, count }) {
+
   return (
     <Stack spacing={2}>
       <Pagination
-        count={10}
+        count={count}
+        page={page}
         color="primary"
+        onChange={handlePageChange}
         sx={{justifyContent: 'center'}}
         renderItem={(item) => (
           <PaginationItem

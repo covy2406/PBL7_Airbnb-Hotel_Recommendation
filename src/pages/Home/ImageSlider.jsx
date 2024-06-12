@@ -6,7 +6,7 @@ import { BsStarFill } from 'react-icons/bs';
 const ImageSlider = ({ title, image, price, rating }) => {
   return (
     <>
-      <Link component={Link} to={'/detail'} className='cursor-pointer'>
+      <Link component={Link} to={'/detail'} className="cursor-pointer">
         <div className="relative ">
           <div className="grid absolute w-full h-full rounded-b-[1.3rem]"></div>
           <div className="flex ">

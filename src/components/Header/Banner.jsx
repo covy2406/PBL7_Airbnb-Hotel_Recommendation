@@ -24,19 +24,52 @@ const Banner = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     //autoplay: true,
-    speed: 100
     //autoplaySpeed: 200,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    speed: 100,
   };
+
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: 'block', right: '10px' }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: 'block', left:'20px' }}
+        onClick={onClick}
+      />
+    );
+  }
+
   return (
     <>
       <div className="slider-container">
         <Slider {...settings}>
           {bannerImage.map((item, index) => (
             <div className="relative sm:h-[400px] md:h-[420px] lg:h-[550px] xl:h-[580px] ">
-              <img src={item.urlImage} alt="" layout="fill" objectFit="cover" className="w-full h-full quality-100" />
-              <div className="absolute w-full text-3xl text-center top-1/2">
-                <p className="text-7xl text-white font-bold mb-4">You don't know where to rent a hotel ?</p>
-                <p className="text-5xl text-orange"> Here are the options that best suit you</p>
+              <img
+                key={index}
+                src={item.urlImage}            
+                alt=""
+                layout="fill"
+                objectFit="cover"
+                className='w-full h-full quality-100'
+              />
+              {/* bg-gray-100 bg-opacity-10 */}
+              <div className='absolute w-full text-3xl text-center top-1/2'>
+                <p className='text-3xl text-white '>You don't know where to rent a hotel ?</p>
+                <p className='text-2xl text-white'> Here are the options that best suit you</p>
               </div>
             </div>
           ))}

@@ -65,10 +65,10 @@ const Footer = () => {
               className={`${index !== 0 && 'border-t border-gray-200 lg:border-none'} py-6 md:py-8`}
               key={index}
             >
-              <h5 className='mb-6 font-bold text-gray-900'>{item.title}</h5>
+              <h5 className='mb-6 font-bold text-gray-900' key={index}>{item.title}</h5>
               <ul className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 gap-y-3 xl:gap-y-4'>
-                {item.sitemap?.map((data) => (
-                  <li className='text-sm cursor-pointer hover:underline'>{data}</li>
+                {item.sitemap?.map((data, index) => (
+                  <li className='text-sm cursor-pointer hover:underline' key={index}>{data}</li>
                 ))}
               </ul>
             </div>

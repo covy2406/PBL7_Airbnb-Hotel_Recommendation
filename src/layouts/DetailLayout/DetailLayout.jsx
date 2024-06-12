@@ -10,7 +10,7 @@ const DetailLayout = () => {
         <Header />
       </div>
       {/* /<Banner /> */}
-      <div className="py-4 mx-12 my-24 sm:mx-6 md:mx-10 lg:mx-12">
+      <div className="py-4 mx-12 my-28 sm:mx-6 md:mx-10 lg:mx-12">
         <Outlet />
       </div>
       <Footer />
