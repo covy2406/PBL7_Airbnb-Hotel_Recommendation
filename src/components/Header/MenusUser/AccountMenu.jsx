@@ -62,8 +62,8 @@ export default function AccountMenu() {
             {currentUser ? (
               <>
                 <FiMenu />
-                <AccountCircleIcon  className="text-[22px]"/> {/* Hiển thị avatar */}
-                <span className='text-[18px] text-black text-sm'>{userData.name}</span> {/* Hiển thị tên tài khoản, ở đây là userData ko phải là currentUser */}
+                <AccountCircleIcon className="text-[22px]"/> {/* Hiển thị avatar */}
+                <span className='text-[17px] text-black text-sm'>{userData.name}</span> {/* Hiển thị tên tài khoản, ở đây là userData ko phải là currentUser */}
               </>
             ) : (
               <>
@@ -114,11 +114,13 @@ export default function AccountMenu() {
             <Avatar /> Đăng nhập
           </MenuItem>
         )}
-        <MenuItem onClick={handleClose} component={Link} to={'/signup'}>
-          <Avatar /> Đăng ký
-        </MenuItem>
+        {!currentUser && (
+          <MenuItem onClick={handleClose} component={Link} to={'/signup'}>
+            <Avatar /> Đăng ký
+          </MenuItem>
+        )}
         <Divider />
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClose} component={Link} to={'/accountInfo'}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
