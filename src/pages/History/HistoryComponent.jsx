@@ -80,7 +80,7 @@ const HistoryComponent = () => {
         ) : (
           <p className="justify-center text-lg text-center uppercase">
             Không có lịch sử khách sạn nào để hiển thị cho bạn. Vì bạn chưa xem một khách sạn nào từ
-            Aibnb của chúng tôi
+            Airbnb của chúng tôi
           </p>
         )}
       </div>

@@ -63,6 +63,7 @@ const Header = () => {
                     className="border-none outline-none w-[24rem] h-20"
                     variant="outlined"
                     onChange={(e) => setTitleSubstring(e.target.value)}
+                    autoFocus
                   />
                 </div>
                 <button onClick={handleSearch} className="flex bg-[#1976D2] p-4 w-[3rem] h-[3rem] rounded-full mx-2 cursor-pointer z-10">
