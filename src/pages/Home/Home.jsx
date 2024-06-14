@@ -32,55 +32,46 @@ const Home = () => {
       id: 1,
       cityName: 'Hồ Chí Minh',
       url: 'https://pix6.agoda.net/geo/city/13170/1_13170_02.jpg?ca=6&ce=1&s=345x345&ar=1x1',
-      hotelQuantity: '15100 khách sạn',
     },
     {
       id: 2,
       cityName: 'Đà Nẵng',
       url: 'https://pix6.agoda.net/geo/city/16440/1_16440_02.jpg?ca=6&ce=1&s=345x345&ar=1x1',
-      hotelQuantity: '4500 khách sạn',
     },
     {
       id: 3,
       cityName: 'Hội An',
       url: 'https://pix6.agoda.net/geo/city/16552/1_16552_02.jpg?ca=6&ce=1&s=345x345&ar=1x1',
-      hotelQuantity: '6500 khách sạn',
     },
     {
       id: 4,
       cityName: 'Nha Trang',
       url: 'https://pix6.agoda.net/geo/city/2679/1_2679_02.jpg?ca=6&ce=1&s=345x345&ar=1x1',
-      hotelQuantity: '5500 khách sạn',
     },
     {
       id: 5,
       cityName: 'Hà Nội',
       url: 'https://pix6.agoda.net/geo/city/2758/065f4f2c9fa263611ab65239ecbeaff7.jpg?ce=0&s=345x345&ar=1x1',
-      hotelQuantity: '14500 khách sạn',
     },
     {
       id: 6,
       cityName: 'Huế',
       url: 'https://pix6.agoda.net/geo/city/3738/1_3738_02.jpg?ca=6&ce=1&s=345x345&ar=1x1',
-      hotelQuantity: '3500 khách sạn',
     },
     {
       id: 7,
       cityName: 'Phan Thiết',
       url: 'https://pix6.agoda.net/geo/city/16264/1_16264_02.jpg?ca=6&ce=1&s=345x345&ar=1x1',
-      hotelQuantity: '1100 khách sạn',
     },
     {
       id: 8,
       cityName: 'Hạ Long',
       url: 'https://pix6.agoda.net/geo/city/17182/1_17182_02.jpg?ca=6&ce=1&s=345x345&ar=1x1',
-      hotelQuantity: '2981 khách sạn',
     },
     {
       id: 9,
       cityName: 'Đà Lạt',
       url: 'https://pix6.agoda.net/geo/city/15932/1_15932_02.jpg?ca=6&ce=1&s=345x345&ar=1x1',
-      hotelQuantity: '1496 khách sạn',
     },
   ];
 

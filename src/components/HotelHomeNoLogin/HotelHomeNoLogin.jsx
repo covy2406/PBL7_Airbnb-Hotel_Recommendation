@@ -26,7 +26,7 @@ const HotelHome = ({ hotelItem }) => {
             <h5 className="max-w-[16rem] text-[16px] -mt-1 text-black-500">{hotelItem.name}</h5>
             <h5 className="text-[14px] text-gray-500">{hotelItem.address}</h5>
             <h5 className="max-w-[17rem] font-semibold text-[16px] mt-1 text-black-400">
-              {parseInt(hotelItem.price).toLocaleString('vn-VN')} đ /{' '}
+              {parseInt(hotelItem.price).toLocaleString('vn-VN')} vnđ /{' '}
               <span className="text-gray-500">đêm</span>
             </h5>
           </div>

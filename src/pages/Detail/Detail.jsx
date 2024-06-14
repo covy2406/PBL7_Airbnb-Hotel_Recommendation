@@ -31,7 +31,10 @@ const Detail = () => {
   return (
     <>
       <div className="mx-4 my-16">
-        <h1 className="text-3xl font-semibold">{detailHotel.name}</h1>
+        <div className='flex items-center justify-between'>
+          <h1 className="text-3xl font-semibold">{detailHotel.name}</h1>
+          <h1 className="text-3xl font-semibold text-blue-500">{parseInt(detailHotel.price).toLocaleString('vn-VN')} {'vnđ / đêm'}</h1>
+        </div>
         <div className="flex my-2">
           <span className="text-[20px]">
             <MdPlace />

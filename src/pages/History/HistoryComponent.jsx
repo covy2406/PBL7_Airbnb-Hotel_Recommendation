@@ -63,7 +63,7 @@ const HistoryComponent = () => {
                       </h5>
                       <h5 className="text-[14px] text-gray-500">{hotelItem.Hotels?.address}</h5>
                       <h5 className="max-w-[17rem] font-semibold text-[16px] mt-1 text-black-400">
-                        {parseInt(hotelItem.Hotels?.price).toLocaleString('vn-VN')} đ /{' '}
+                        {parseInt(hotelItem.Hotels?.price).toLocaleString('vn-VN')} vnđ /{' '}
                         <span className="text-gray-500">đêm</span>
                       </h5>
                     </div>

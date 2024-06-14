@@ -26,13 +26,13 @@ const HotelHome = ({ rcmdItem }) => {
             <h5 className="max-w-[16rem] text-[16px] -mt-1 text-black-500">{rcmdItem.name}</h5>
             <h5 className="text-[14px] text-gray-500">{rcmdItem.address}</h5>
             <h5 className="max-w-[17rem] font-semibold text-[16px] mt-1 text-black-400">
-              {parseInt(rcmdItem.price).toLocaleString('vn-VN')} đ /{' '}
+              {parseInt(rcmdItem.price).toLocaleString('vn-VN')} vnđ /{' '}
               <span className="text-gray-500">đêm</span>
             </h5>
           </div>
           {/* Right */}
           <div className="flex items-center space-x-1">
-            <h5 className="text-[15px]">{rcmdItem.star}</h5>
+            <h5 className="text-[15px]">{rcmdItem.stars}</h5>
             <BsStarFill className="text-sm text-yellow" />
           </div>
         </div>
