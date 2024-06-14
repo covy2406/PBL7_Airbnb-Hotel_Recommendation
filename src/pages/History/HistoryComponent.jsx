@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { getHistory } from '../../api/apiHistory';
 // import History from './History';
 import CustomIcons from '../../components/Pagination/Pagination';
 import { BsStarFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { StorageContext } from '../../context/Storage/StorageContext';
 
 const HistoryComponent = () => {
+  const { userData } = useContext(StorageContext);
   const [hotelWatched, setHotelWatched] = useState([]); // Khách sạn đã xem
   const [page, setPage] = useState(1); // Trang hiện tại
   const [totalPage, setTotalPage] = useState(0); // Tong so trang
@@ -32,6 +34,7 @@ const HistoryComponent = () => {
       <div className="py-12">
         {hotelWatched.length > 0 ? (
           <div>
+            <p className='items-center py-2 text-lg text-center uppercase text-grey-500'>{'Những khách sạn người dùng'} {userData.name} {'đã xem'}</p>
             <div className="grid grid-cols-1 gap-12 pt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
               {hotelWatched.map((hotelItem, index) => (
                 <Link
@@ -80,7 +83,7 @@ const HistoryComponent = () => {
         ) : (
           <p className="justify-center text-lg text-center uppercase">
             Không có lịch sử khách sạn nào để hiển thị cho bạn. Vì bạn chưa xem một khách sạn nào từ
-            Aibnb của chúng tôi
+            Airbnb của chúng tôi
           </p>
         )}
       </div>

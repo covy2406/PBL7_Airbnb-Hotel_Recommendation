@@ -3,11 +3,17 @@ import { useState, useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import AccountMenu from './MenusUser/AccountMenu';
+import { getsearchRecommend } from '../../api/apiRecommend';
+import { CiSearch } from "react-icons/ci";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
   const [title_substring, setTitleSubstring] = useState(searchParams.get('title_substring') || '');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [suggestions, setSugesstions] = useState([]);
+  //const [dataName, setDataName] = useState([]);
+
 
   const navigate = useNavigate();
 
@@ -32,6 +38,26 @@ const Header = () => {
       setSearchParams({ title_substring: title_substring });
       navigate(`/search?title_substring=${title_substring}`);
     }
+  };
+
+  useEffect(() => {
+    if (title_substring) {
+      getsearchRecommend(title_substring)
+        .then((res) => {
+          //setData(res.neighbours);
+          setSugesstions(res.names);
+          console.log(res.names);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [title_substring]);
+
+  const handleBlur = () => {
+    setTimeout(() => {
+      setShowSuggestions(false);
+    }, 200); // Delay hiding the suggestions to allow clicking
   };
 
   return (
@@ -63,6 +89,9 @@ const Header = () => {
                     className="border-none outline-none w-[24rem] h-20"
                     variant="outlined"
                     onChange={(e) => setTitleSubstring(e.target.value)}
+                    autoFocus
+                    onFocus={() => setShowSuggestions(true)} // Show suggestions on focus
+                    onBlur={handleBlur} // Hide suggestions on blur
                   />
                 </div>
                 <button
@@ -73,7 +102,20 @@ const Header = () => {
                 </button>
               </div>
             </div>
-            {/* bg-[#ff5a60] */}
+            {/* hiển thị nội dung gợi ý để tìm kiếm (debounce) */}
+            {showSuggestions && (
+              <div className=" absolute top-20 left-7 right-0 border bg-white shadow-md  z-10 w-[28rem]">
+                <ul className='list-none'>
+                  {suggestions.map((suggestion, index) => (
+                    <Link  component={Link} to={`/hotels/${suggestion.id}`}>
+                      <li key={index} className="flex items-center p-2 text-sm font-normal border-b cursor-pointer hover:bg-slate-100">
+                      <CiSearch className='mr-2'/>{suggestion.name}
+                      </li>
+                    </Link>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           {/* right */}

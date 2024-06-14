@@ -15,6 +15,7 @@ import Comment from '../../components/Comment/Comment';
 
 const Detail = () => {
   const [detailHotel, setDetailHotel] = useState([]);
+  console.log('in ra detailHotel', detailHotel);
 
   let { id } = useParams();
   useEffect(() => {
@@ -338,7 +339,7 @@ const Detail = () => {
         </div>
         <div className="my-12">
           <div className="grid items-center grid-cols-2 gap-4 pb-6 sm:grid-cols-1 md:grid-cols-2 text-2sm">
-            {detailHotel.HotelRatings > 0 ? (
+            {detailHotel.HotelRatings ? (
               detailHotel.HotelRatings?.map((cmt, index) => <Comment cmt={cmt} key={index} />)
             ) : (
               <p className="uppercase text-2lg">Chưa có nhận xét nào về khách sạn</p>
