@@ -29,20 +29,20 @@ const Comment = ({ cmt }) => {
 
   return (
     <>
-      <div className="items-center p-3 border-2 rounded-3xl bg-gray-50">
+      <div className="items-center p-3 border-2 rounded-3xl bg-slate-100">
         <div className="flex items-center py-3">
         <AccountCircleIcon className="text-[18px]" style={{ fontSize: 48, color: '#89bf04' }} />
           <div className='ml-2'>
             <span className='text-sm'>{cmt.user_name}</span>
             <div className='text-sm text-gray-500'>
               {calculateTimeFromNow(cmt.createAt)}
-            </div>
+            </div> 
           </div>
         </div>
         <div className="mb-3 text-2sm">
           {'Điểm đánh giá: '} <span className='text-blue-500'>{cmt.score}</span>
         </div>
-        <div className="items-center py-4">
+        <div className="items-center py-3">
           <div className="mt-3 text-2sm border-1 rounded-2xl">{cmt.text}</div>
         </div>
       </div>
