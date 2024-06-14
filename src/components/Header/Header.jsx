@@ -4,6 +4,7 @@ import { FiSearch } from 'react-icons/fi';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import AccountMenu from './MenusUser/AccountMenu';
 import { getsearchRecommend } from '../../api/apiRecommend';
+import { CiSearch } from "react-icons/ci";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -106,9 +107,9 @@ const Header = () => {
               <div className=" absolute top-20 left-7 right-0 border bg-white shadow-md  z-10 w-[28rem]">
                 <ul className='list-none'>
                   {suggestions.map((suggestion, index) => (
-                    <Link component={Link} to={`/hotels/${suggestion.id}`}  >
-                      <li key={index} className="items-center p-2 text-sm font-normal border-b cursor-pointer">
-                        {suggestion.name}
+                    <Link  component={Link} to={`/hotels/${suggestion.id}`}>
+                      <li key={index} className="flex items-center p-2 text-sm font-normal border-b cursor-pointer hover:bg-slate-100">
+                      <CiSearch className='mr-2'/>{suggestion.name}
                       </li>
                     </Link>
                   ))}
