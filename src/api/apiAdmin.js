@@ -1,4 +1,4 @@
-import { axiosAdmin } from './axiosClient';
+import axiosClient, { axiosAdmin } from './axiosClient';
 
 export async function getProvincesStatistic() {
   try {
@@ -30,6 +30,20 @@ export async function getScoresStatistic() {
 export async function getPriceStatistic() {
   try {
     const res = await axiosAdmin.get(`/prices_statictis`);
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function getUsersStatistic(page, size) {
+  try {
+    const res = await axiosClient.get(`/users`, {
+      params: {
+        page: page,
+        count: size,
+      },
+    });
     return res.data;
   } catch (err) {
     console.error(err);

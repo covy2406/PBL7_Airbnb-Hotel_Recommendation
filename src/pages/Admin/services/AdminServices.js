@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getProvincesStatistic, getPriceStatistic } from '../../../api/apiAdmin';
+import { getProvincesStatistic, getPriceStatistic, getUsersStatistic } from '../../../api/apiAdmin';
+import { getHotel } from '../../../api/apihotel';
 
 export const ProvincesStatisticService = () => {
   const [provinceTable, setProvinceTable] = useState([]);
@@ -56,4 +57,48 @@ export const PriceStatisticService = () => {
       });
   }, []);
   return { priceTable, priceChart, loading };
+};
+
+export const HotelsStatisticService = (page, size) => {
+  const [hotelsTable, setHotelsTable] = useState([]);
+  const [totalPage, setTotalPage] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getHotel(page, size)
+      .then((res) => {
+        setHotelsTable(res.data);
+        setTotalPage(Math.ceil(res.count / size));
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, [page, size]);
+
+  return { hotelsTable, totalPage, loading };
+};
+
+export const UsersStatisticService = (page, size) => {
+  const [hotelsTable, setHotelsTable] = useState([]);
+  const [totalPage, setTotalPage] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [count, setCount] = useState();
+
+  useEffect(() => {
+    getUsersStatistic(page, size)
+      .then((res) => {
+        setHotelsTable(res.data);
+        setCount(res.count);
+        setTotalPage(Math.ceil(res.count / size));
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, [page, size]);
+
+  return { hotelsTable, totalPage, loading, count };
 };
