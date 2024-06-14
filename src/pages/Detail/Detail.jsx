@@ -39,9 +39,11 @@ const Detail = () => {
           <span className="text-[20px]">
             <MdPlace />
           </span>
-          <p className="text-sm text-blue">{detailHotel.address}</p>
+          <p className="text-sm text-blue">
+            {detailHotel.address}
+          </p>
         </div>
-        <p className="text-sm font-semibold text-blue-700 cursor-pointer">
+        <p className="text-sm font-semibold cursor-pointer text-blue" onClick={() => window.open(`https://www.google.com/maps/search/${detailHotel.address}`)}>
           Hiển thị ví trí trên bảng đồ
         </p>
         <div className="flex items-center justify-center w-full py-4 rounded-xl">
