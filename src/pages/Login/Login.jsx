@@ -98,7 +98,7 @@ const Login = () => {
             render={({ field, fieldState: { error } }) => (
               <TextField
                 {...field}
-                label="Password"
+                label="Mật khẩu"
                 variant="outlined"
                 fullWidth
                 type={showPassword ? 'text' : 'password'}
