@@ -124,15 +124,15 @@ const Login = () => {
         <Button variant="contained" type="submit">
           Đăng nhập
         </Button>
-        <div className="flex justify-between mt-4">
+        <div className="flex items-center justify-between mt-4 text-center">
           <p className="text-sm text-center">
             Don't have an account?
-            <Link to={'/signup'} className="pl-2 text-blue-500 cursor-pointer">
+            <Link to={'/signup'} className="pl-2 cursor-pointer text-blue">
               Signup
             </Link>
           </p>
-          <span className="text-sm font-semibold">or</span>
-          <p className="text-sm text-center text-blue-500 cursor-pointer">Forget password?</p>
+          {/* <span className="text-sm font-semibold">or</span>
+          <p className="text-sm text-center cursor-pointer text-blue">Forget password?</p> */}
         </div>
         <ToastContainer />
       </form>
