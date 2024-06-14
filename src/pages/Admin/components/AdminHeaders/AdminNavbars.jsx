@@ -19,7 +19,7 @@ export const AdminNavbars = () => {
             variant="contained"
             size="large"
             sx={{ borderRadius: '0px', justifyContent: 'start', textTransform: 'none', border: 'none', boxShadow: 'none' }}>
-            {navbar.displayName}
+            <div className="font-bold">{navbar.displayName}</div>
           </Button>
         ))}
       </div>

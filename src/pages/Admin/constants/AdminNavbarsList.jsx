@@ -1,27 +1,21 @@
 import React from 'react';
 import HomeIcon from '@mui/icons-material/Home';
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import EmojiTransportationIcon from '@mui/icons-material/EmojiTransportation';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 export const AdminNavbarsList = [
   {
-    displayName: 'Dashboard',
+    displayName: 'Trang chủ',
     path: '/admin/dashboard',
     icon: <HomeIcon />,
   },
   {
-    displayName: 'Crawling',
-    path: '/admin/crawling',
-    icon: <RocketLaunchIcon />,
-  },
-  {
-    displayName: 'Provinces',
+    displayName: 'Thành phố',
     path: '/admin/provinces',
     icon: <EmojiTransportationIcon />,
   },
   {
-    displayName: 'Prices',
+    displayName: 'Bảng giá',
     path: '/admin/prices',
     icon: <LocalOfferIcon />,
   },

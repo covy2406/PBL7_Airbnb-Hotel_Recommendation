@@ -19,10 +19,7 @@ export const ProvincesStatisticService = () => {
           });
         }
         setProvinceTable(newProvince);
-        setProvinceChart({
-          xAxis: [{ scaleType: 'band', data: city }],
-          series: [{ data: numHotels, type: 'bar' }],
-        });
+        setProvinceChart(Object.entries(res).map(([city, numHotels]) => ({ name: city, value: numHotels })));
         setLoading(false);
       })
       .catch(() => {
@@ -51,12 +48,7 @@ export const PriceStatisticService = () => {
           });
         }
         setPriceTable(newPrice);
-        setPriceChart({
-          data: price.map((price, index) => ({
-            x: price,
-            y: score[index],
-          })),
-        });
+        setPriceChart(newPrice);
         setLoading(false);
       })
       .catch(() => {
