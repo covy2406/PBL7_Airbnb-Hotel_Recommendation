@@ -94,7 +94,7 @@ const Header = () => {
                 </div>
                 <button
                   onClick={handleSearch}
-                  className="flex bg-blue p-4 w-[3rem] h-[3rem] rounded-full mx-2 cursor-pointer z-10">
+                  className="flex bg-[#1976D2] p-4 w-[3rem] h-[3rem] rounded-full mx-2 cursor-pointer z-10">
                   <FiSearch className="text-white cursor-pointer" />
                 </button>
               </div>

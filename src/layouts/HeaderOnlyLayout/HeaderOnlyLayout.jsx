@@ -6,7 +6,7 @@ import Footer from '../../components/Footer/Footer';
 function HeaderOnlyLayout() {
   return (
     <div>
-      <div className="fixed top-0 left-0 right-0 z-50 bg-blue">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-blue-500">
         <Header />
       </div>
       <div className="mx-12 my-28">
