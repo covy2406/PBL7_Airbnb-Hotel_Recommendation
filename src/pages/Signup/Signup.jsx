@@ -311,8 +311,8 @@ const Signup = () => {
         <div className="mt-4 text-center">
           <p className="text-sm">
             Khi nhấn đăng ký, tôi đồng ý với các
-            <span className="px-1 text-blue-500">Điều khoản sử dụng</span> và
-            <span className="px-1 text-blue-500">Chính sách bảo mật của Airbnb.</span>
+            <span className="px-1 text-blue">Điều khoản sử dụng</span> và
+            <span className="px-1 text-blue">Chính sách bảo mật của Airbnb.</span>
           </p>
         </div>
       </form>
