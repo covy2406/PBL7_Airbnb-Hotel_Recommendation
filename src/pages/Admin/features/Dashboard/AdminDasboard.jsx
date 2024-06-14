@@ -32,7 +32,7 @@ export const AdminDashboard = () => {
       </div>
       <div className="bg-lightBlue rounded-xl p-4">
         <div>
-          <Outlet/> 
+          <Outlet />
           <CrawlingBlock />
         </div>
       </div>

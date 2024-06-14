@@ -3,7 +3,7 @@ module.exports = {
   content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
   theme: {
     colors: {
-      blue: '#2e95ea',
+      blue: '#1976D2',
       red: '#f44336',
       yellow: '#f89c26',
       'yellow-light': 'rgba(249, 198, 79, 0.2)',
@@ -27,9 +27,9 @@ module.exports = {
       lightBlue: '#add8e6',
       deepPurple: '#673ab7',
       lightGreen: '#90ee90',
-      deepTeal: '#008b8b'
+      deepTeal: '#008b8b',
     },
-    extend: {}
+    extend: {},
   },
-  plugins: [require('tailwind-scrollbar-hide', '@tailwindcss/line-clamp')]
+  plugins: [require('tailwind-scrollbar-hide', '@tailwindcss/line-clamp')],
 };

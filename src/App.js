@@ -14,6 +14,8 @@ import Profile from './pages/Profile/Profile';
 import HistoryComponent from './pages/History/HistoryComponent';
 import { AdminLayout } from './pages/Admin/layouts/AdminLayout';
 import { AdminCrawling, AdminDashboard, AdminNavbars } from './pages/Admin';
+import { ProvinceStatistic } from './pages/Admin/features/Statistic/ProvinceStatistic';
+import { Pricestatistic } from './pages/Admin/features/Prices/PriceStatistic';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -38,6 +40,8 @@ const App = () => {
           <Route element={<AdminNavbars />}>
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="crawling" element={<AdminCrawling />} />
+            <Route path="provinces" element={<ProvinceStatistic />} />
+            <Route path="prices" element={<Pricestatistic />} />
           </Route>
         </Route>
       </>

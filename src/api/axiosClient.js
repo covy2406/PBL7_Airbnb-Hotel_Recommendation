@@ -10,6 +10,15 @@ const axiosClient = axios.create({
   },
 });
 
+export const axiosAdmin = axios.create({
+  baseURL: 'https://pbl7-be-flask.onrender.com',
+  headers: {
+    'ngrok-skip-browser-warning': 'true',
+    Accept: 'application/json, text/plain, */*',
+    'Content-Type': 'multipart/form-data',
+  },
+});
+
 // Add a request interceptor
 axiosClient.interceptors.request.use(
   function (config) {
@@ -25,7 +34,7 @@ axiosClient.interceptors.request.use(
   function (error) {
     // Do something with request error
     return Promise.reject(error);
-  },
+  }
 );
 
 // Add a response interceptor
@@ -39,7 +48,7 @@ axiosClient.interceptors.response.use(
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     return Promise.reject(error);
-  },
+  }
 );
 
 export const setHeaderConfigAxios = (token) => {

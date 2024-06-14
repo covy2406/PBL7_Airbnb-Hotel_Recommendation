@@ -12,13 +12,13 @@ export const AdminNavbars = () => {
       <div className="flex flex-col h-[85vh]">
         {AdminNavbarsList.map((navbar) => (
           <Button
+            key={navbar.displayName}
             className={location === navbar.path ? 'brightness-[1]' : 'brightness-[1.1]'}
             onClick={() => navigate(navbar.path)}
             startIcon={navbar.icon}
             variant="contained"
             size="large"
-            sx={{ borderRadius: '0px', justifyContent: 'start', textTransform: 'none', border: 'none', boxShadow: 'none' }}
-          >
+            sx={{ borderRadius: '0px', justifyContent: 'start', textTransform: 'none', border: 'none', boxShadow: 'none' }}>
             {navbar.displayName}
           </Button>
         ))}
