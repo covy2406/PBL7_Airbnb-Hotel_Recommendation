@@ -22,7 +22,7 @@ const CityOutstanding = ({itemCity}) => {
             {/* right */}
             <div className="flex justify-center text-center">
               <div>
-                <h2 className="text-blue-500">{itemCity.name}</h2>
+                <h2 className="text-blue">{itemCity.name}</h2>
                 {/* <h2 className="text-gray-500">{itemCity}</h2> */}
               </div>
             </div>

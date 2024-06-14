@@ -6,7 +6,7 @@ import Footer from '../../components/Footer/Footer';
 const DetailLayout = () => {
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50 bg-blue-500">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-blue">
         <Header />
       </div>
       {/* /<Banner /> */}

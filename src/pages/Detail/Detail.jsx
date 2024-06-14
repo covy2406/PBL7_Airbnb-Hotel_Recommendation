@@ -33,13 +33,13 @@ const Detail = () => {
       <div className="mx-4 my-16">
         <div className='flex items-center justify-between'>
           <h1 className="text-3xl font-semibold">{detailHotel.name}</h1>
-          <h1 className="text-3xl font-semibold text-blue-500">{parseInt(detailHotel.price).toLocaleString('vn-VN')} {'vnđ / đêm'}</h1>
+          <h1 className="text-3xl font-semibold text-blue">{parseInt(detailHotel.price).toLocaleString('vn-VN')} {'vnđ / đêm'}</h1>
         </div>
         <div className="flex my-2">
           <span className="text-[20px]">
             <MdPlace />
           </span>
-          <p className="text-sm">{detailHotel.address}</p>
+          <p className="text-sm text-blue">{detailHotel.address}</p>
         </div>
         <p className="text-sm font-semibold text-blue-700 cursor-pointer">
           Hiển thị ví trí trên bảng đồ
@@ -243,7 +243,7 @@ const Detail = () => {
                 </p>
               </div>
               <div className="pr-8 mr-8 border-r">
-                <p className="items-center p-4 text-xl font-medium text-center text-white bg-blue-500 border rounded-xl">
+                <p className="items-center p-4 text-xl font-medium text-center text-white border bg-blue rounded-xl">
                   {detailHotel.avgScore}
                 </p>
                 {/* < BsStarFill className='text-sm'/> */}
@@ -304,35 +304,35 @@ const Detail = () => {
             <div className="flex items-center pb-8 my-12 font-medium border-b">
               <div className="w-64 p-2 border-r">
                 <p className="text-lg">Nhân viên phục vụ</p>
-                <p className="items-center w-10 p-[5px] text-lg mb-4 text-center text-white bg-blue-500 rounded-lg">
+                <p className="items-center w-10 p-[5px] text-lg mb-4 text-center text-white bg-blue rounded-lg">
                   {detailHotel.serve_score}
                 </p>
                 <FaPeopleGroup />
               </div>
               <div className="w-64 p-2 border-r">
                 <p className="text-lg">Tiện nghi</p>
-                <p className="items-center w-10 p-[5px] text-lg mb-4 text-center text-white bg-blue-500 rounded-lg">
+                <p className="items-center w-10 p-[5px] text-lg mb-4 text-center text-white bg-blue rounded-lg">
                   {detailHotel.facilities_score}
                 </p>
                 <MdOutlineHotel />
               </div>
               <div className="w-64 p-2 border-r">
                 <p className="text-lg">Sạch sẽ</p>
-                <p className="items-center w-10 p-[5px] text-lg mb-4 text-center text-white bg-blue-500 rounded-lg">
+                <p className="items-center w-10 p-[5px] text-lg mb-4 text-center text-white bg-blue rounded-lg">
                   {detailHotel.cleaness_score}
                 </p>
                 <MdOutlineCleaningServices />
               </div>
               <div className="w-64 p-2 border-r">
                 <p className="text-lg">Thoải mái</p>
-                <p className="items-center w-10 p-[5px] text-lg mb-4 text-center text-white bg-blue-500 rounded-lg">
+                <p className="items-center w-10 p-[5px] text-lg mb-4 text-center text-white bg-blue rounded-lg">
                   {detailHotel.comfort_score}
                 </p>
                 <GiNightSleep />
               </div>
               <div className="w-64 p-2 border-r">
                 <p className="text-lg">Địa điểm</p>
-                <p className="items-center w-10 p-[5px] text-lg mb-4 text-center text-white bg-blue-500 rounded-lg">
+                <p className="items-center w-10 p-[5px] text-lg mb-4 text-center text-white bg-blue rounded-lg">
                   {detailHotel.location_score}
                 </p>
                 <MdOutlinePlace />
