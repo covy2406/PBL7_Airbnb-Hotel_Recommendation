@@ -1,8 +1,7 @@
 import React from 'react';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const Banner = () => {
   const bannerImage = [
@@ -18,7 +17,7 @@ const Banner = () => {
       id: 3,
       urlImage: 'https://th.bing.com/th/id/R.2095d3461f2579ad7d6f0c30d295f47f?rik=K7TU45JgAMhLtg&pid=ImgRaw&r=0'
     }
-  ]
+  ];
   var settings = {
     dots: true,
     infinite: true,
@@ -55,8 +54,8 @@ const Banner = () => {
 
   return (
     <>
-      <div className='slider-container'>
-        <Slider  {...settings}>
+      <div className="slider-container">
+        <Slider {...settings}>
           {bannerImage.map((item, index) => (
             <div className="relative sm:h-[400px] md:h-[420px] lg:h-[550px] xl:h-[580px] ">
               <img
