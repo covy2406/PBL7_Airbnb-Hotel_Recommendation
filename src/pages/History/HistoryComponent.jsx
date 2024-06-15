@@ -5,15 +5,15 @@ import CustomIcons from '../../components/Pagination/Pagination';
 import { BsStarFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { StorageContext } from '../../context/Storage/StorageContext';
+import { CircularProgress } from '@mui/material';
 
 const HistoryComponent = () => {
   const { userData } = useContext(StorageContext);
-  const [hotelWatched, setHotelWatched] = useState([]); // Khách sạn đã xem
-  const [page, setPage] = useState(1); // Trang hiện tại
-  const [totalPage, setTotalPage] = useState(0); // Tong so trang
+  const [hotelWatched, setHotelWatched] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
   const count = 12;
-
-  // console.log('in ra hotelWatched', hotelWatched);
 
   useEffect(() => {
     getHistory(page, count)
@@ -23,26 +23,35 @@ const HistoryComponent = () => {
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [page, count]);
 
   const handlePageChange = (event, value) => {
     setPage(value);
   };
+
+  if (loading) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <CircularProgress></CircularProgress>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="py-12">
         {hotelWatched.length > 0 ? (
           <div>
-            <p className='items-center py-2 text-lg text-center uppercase text-grey-500'>{'Những khách sạn người dùng'} {userData.name} {'đã xem'}</p>
+            <p className="items-center py-2 text-lg text-center uppercase text-grey-500">
+              {'Những khách sạn người dùng'} {userData.name} {'đã xem'}
+            </p>
             <div className="grid grid-cols-1 gap-12 pt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
               {hotelWatched.map((hotelItem, index) => (
-                <Link
-                  key={index}
-                  component={Link}
-                  to={`/hotels/${hotelItem.Hotels?.id}`}
-                  className="cursor-pointer"
-                >
+                <Link key={index} component={Link} to={`/hotels/${hotelItem.Hotels?.id}`} className="cursor-pointer">
                   <div className="relative ">
                     <div className="grid absolute w-full h-full rounded-b-[1.3rem]"></div>
                     <div className="flex ">
@@ -58,9 +67,7 @@ const HistoryComponent = () => {
                   <div className="flex items-start justify-between pt-3">
                     {/* Left */}
                     <div className="">
-                      <h5 className="max-w-[16rem] text-[16px] -mt-1 text-black-500">
-                        {hotelItem.Hotels?.name}
-                      </h5>
+                      <h5 className="max-w-[16rem] text-[16px] -mt-1 text-black-500">{hotelItem.Hotels?.name}</h5>
                       <h5 className="text-[14px] text-gray-500">{hotelItem.Hotels?.address}</h5>
                       <h5 className="max-w-[17rem] font-semibold text-[16px] mt-1 text-black-400">
                         {parseInt(hotelItem.Hotels?.price).toLocaleString('vn-VN')} vnđ /{' '}
@@ -82,8 +89,7 @@ const HistoryComponent = () => {
           </div>
         ) : (
           <p className="justify-center text-lg text-center uppercase">
-            Không có lịch sử khách sạn nào để hiển thị cho bạn. Vì bạn chưa xem một khách sạn nào từ
-            Airbnb của chúng tôi
+            Không có lịch sử khách sạn nào để hiển thị cho bạn. Vì bạn chưa xem một khách sạn nào từ Airbnb của chúng tôi
           </p>
         )}
       </div>

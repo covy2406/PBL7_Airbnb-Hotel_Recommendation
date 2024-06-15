@@ -73,7 +73,7 @@ export const AdminUsers = () => {
       {
         accessorKey: 'roles',
         header: 'Phân quyền',
-        cell: (info) => <div className="text-center">{info.getValue()[0].name}</div>,
+        cell: (info) => <div className="text-center">{info.getValue()[0]?.name || 'ADMIN'}</div>,
         filterFn: 'includesString',
         meta: {
           width: COLUMN_WIDTH[10],
