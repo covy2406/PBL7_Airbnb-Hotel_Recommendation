@@ -10,15 +10,12 @@ function StorageContextUser({ children }) {
 
   const states = {
     currentUser: currentUser,
-    setCurrentUser: setCurrentUser, // Đã đăng nhập hay là chưa
+    setCurrentUser: setCurrentUser,
     userData: userData, // dữ liệu người dùng sau khi đăng nhập
     setUserData: setUserData,
   };
-
+  const authToken = getCookie('authToken');
   useEffect(() => {
-    const authToken = getCookie('authToken'); // Đảm bảo tên đúng là 'authToken'
-    //console.log('authToken lấy từ cookie:', authToken); // Log để kiểm tra giá trị
-
     if (authToken) {
       try {
         const decodedToken = jwtDecode(authToken);
@@ -26,15 +23,15 @@ function StorageContextUser({ children }) {
         setUserData(decodedToken);
         //console.log('Decoded token:', decodedToken); // Log decoded token để kiểm tra giá trị
       } catch (error) {
-        console.error('Token decoding failed:', error);
-        setCurrentUser(false);
+        // console.error('Token decoding failed:', error);
+        setCurrentUser(true);
         setUserData({});
       }
     } else {
-      setCurrentUser(false);
+      setCurrentUser(true);
       setUserData({});
-    } 
-  }, []);
+    }
+  }, [authToken]);
 
   return <StorageContext.Provider value={states}>{children}</StorageContext.Provider>;
 }

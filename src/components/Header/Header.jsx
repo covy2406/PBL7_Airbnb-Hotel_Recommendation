@@ -77,7 +77,7 @@ const Header = () => {
           {/* middle */}
           <div className="relative items-center justify-center h-20 bg-white border rounded-full shadow-sm md:flex shadow-gray-400">
             {/* thẻ div ngay dưới là nội dung của search, nhận phòng, trả phòng, khách */}
-            <div className=" w-[32rem] rounded-full items-center ountline-0 h-20">
+            <div className=" w-[32rem] rounded-full items-center outline-0 h-20">
               <div className="absolute flex items-center justify-between w-full h-20 px-12 font-semibold text-gray-500 justify-items-center">
                 <div className="w-[32rem] rounded-full h-20 font-semibold text-gray-500 border-none">
                   <input
@@ -88,7 +88,7 @@ const Header = () => {
                     variant="outlined"
                     onChange={(e) => setTitleSubstring(e.target.value)}
                     autoFocus
-                    onFocus={() => setShowSuggestions(true)} // Show suggestions on focus
+                    onFocus={() => title_substring && setShowSuggestions(true)} // Show suggestions on focus
                     onBlur={handleBlur} // Hide suggestions on blur
                   />
                 </div>

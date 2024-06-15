@@ -27,15 +27,15 @@ const Login = () => {
       console.log(res.status);
       toast.success('Đăng nhập thành công');
       setTimeout(() => {
-        navigate('/');      
-      }, 1000)
+        navigate('/');
+      }, 1000);
       // if(res.status === 201) {
       //   console.log(res.status);
       //   toast.success('Đăng nhập thành công');
       //   setTimeout(() => {
       //     navigate('/');
       //   }, 1000)
-      // } 
+      // }
 
       // const cookies = new Cookies(null, { path: '/' });
 
@@ -56,10 +56,7 @@ const Login = () => {
 
   return (
     <div className="z-0 flex flex-col w-full max-w-sm pt-16 mx-auto shadow-transparent">
-      <form
-        className="flex flex-col p-4 bg-slate-100 shadow-gray-500"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form className="flex flex-col p-4 bg-slate-100 shadow-gray-500" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <Typography className="text-center" variant="h6">
             Đăng nhập
@@ -107,11 +104,7 @@ const Login = () => {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleShowPassword}
-                        edge="end"
-                      >
+                      <IconButton aria-label="toggle password visibility" onClick={handleShowPassword} edge="end">
                         {showPassword ? <VisibilityOff /> : <Visibility />}
                       </IconButton>
                     </InputAdornment>
@@ -126,9 +119,9 @@ const Login = () => {
         </Button>
         <div className="flex items-center justify-between mt-4 text-center">
           <p className="text-sm text-center">
-            Don't have an account?
+            Bạn chưa có tài khoản?
             <Link to={'/signup'} className="pl-2 cursor-pointer text-blue">
-              Signup
+              Đăng ký
             </Link>
           </p>
           {/* <span className="text-sm font-semibold">or</span>

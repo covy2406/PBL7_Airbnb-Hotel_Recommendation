@@ -19,10 +19,10 @@ import { signOut } from '../../../api/apiUsers';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function AccountMenu() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { currentUser, userData, setUserData, setCurrentUser } = React.useContext(StorageContext);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -33,37 +33,33 @@ export default function AccountMenu() {
 
   const handleLogOut = async (event) => {
     Cookies.remove('authToken');
-    window.location.replace('/');
-    //navigate('/');
     try {
       await signOut();
       toast.success('Đăng xuất thành công');
-      navigate('/');
+      setCurrentUser(false);
+      setUserData({});
+      navigate('/login');
     } catch (error) {
       toast.error('Lỗi không thể đăng xuất');
       toast.error(error.message);
     }
-  }
-
-  const { currentUser, userData } = React.useContext(StorageContext); // Lấy dữ liệu từ context ; userData
-  // console.log(currentUser);
-  // console.log(userData);
+  };
 
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Tooltip title='Tài khoản'>
+        <Tooltip title="Tài khoản">
           <div
             className="flex items-center gap-4 px-5 py-3 font-bold bg-white border-2 rounded-full cursor-pointer text-gray "
-            onClick={handleClick}
-          >
+            onClick={handleClick}>
             {/* <FiMenu />
             <AccountCircleIcon className="text-[22px]" /> */}
             {currentUser ? (
               <>
                 <FiMenu />
-                <AccountCircleIcon className="text-[22px]"/> {/* Hiển thị avatar */}
-                <span className='text-[17px] text-black text-sm'>{userData.name}</span> {/* Hiển thị tên tài khoản, ở đây là userData ko phải là currentUser */}
+                <AccountCircleIcon className="text-[22px]" alt={userData.name} />
+                <div className="text-[17px] text-black text-sm">{userData.name}</div>{' '}
+                {/* Hiển thị tên tài khoản, ở đây là userData ko phải là currentUser */}
               </>
             ) : (
               <>
@@ -107,9 +103,8 @@ export default function AccountMenu() {
           },
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-      >
-        {!currentUser  && (
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
+        {!currentUser && (
           <MenuItem onClick={handleClose} component={Link} to={'/login'}>
             <Avatar /> Đăng nhập
           </MenuItem>
@@ -133,7 +128,7 @@ export default function AccountMenu() {
           <Button onClick={handleLogOut}>Đăng xuất</Button>
         </MenuItem>
       </Menu>
-      <ToastContainer/>
+      <ToastContainer />
     </React.Fragment>
   );
 }
