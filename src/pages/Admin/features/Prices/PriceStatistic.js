@@ -162,7 +162,7 @@ export const Pricestatistic = () => {
                   unit="VNĐ"
                   tickFormatter={(value) => `${value.toLocaleString('vi-VN')} `}
                 />
-                <YAxis type="number" dataKey="score" name="Số điểm" domain={[0, 10]} />
+                <YAxis type="number" dataKey="score" name="Số điểm" />
                 <Tooltip cursor={{ strokeDasharray: '3 3' }} />
                 <Scatter data={chartData} fill="#1976d2" />
               </ScatterChart>

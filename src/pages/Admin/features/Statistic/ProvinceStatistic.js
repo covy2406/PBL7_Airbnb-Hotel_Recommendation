@@ -117,7 +117,7 @@ export const ProvinceStatistic = () => {
                           </div>
                           {header.column.getCanFilter() ? (
                             <input
-                              className="pl-1 py-1 m-0"
+                              className="pl-1 py-1 m-0 text-black"
                               value={header.column.getFilterValue() || ''}
                               onChange={(e) => header.column.setFilterValue(e.target.value)}
                               placeholder={`Search...`}
