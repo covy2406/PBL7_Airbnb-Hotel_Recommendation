@@ -6,14 +6,14 @@ import {
   MdOutlineCleaningServices,
   MdOutlinePlace,
   //MdOutlineWifi,
-} from "react-icons/md";
-import { GiNightSleep } from "react-icons/gi";
-import { getDetailHotel } from "../../api/apihotel";
-import { useParams } from "react-router-dom";
-import Comment from "../../components/Comment/Comment";
+} from 'react-icons/md';
+import { GiNightSleep } from 'react-icons/gi';
+import { getDetailHotel } from '../../api/apihotel';
+import { useParams } from 'react-router-dom';
+import Comment from '../../components/Comment/Comment';
 //import CustomIcons from '../../components/Pagination/Pagination';
 //import { StorageContext } from "../../context/Storage/StorageContext";
-import { getsearchRecommend } from "../../api/apiRecommend";
+import { getsearchRecommend } from '../../api/apiRecommend';
 //import HotelHomeNoLogin from '../../components/HotelHomeNoLogin/HotelHomeNoLogin';
 import HotelRecommendLogin from "../../components/HotelRecommendLogin/HotelRecommendLogin";
 import { getDetailHotelAsUser } from "../../api/apiHistory";
@@ -100,7 +100,7 @@ const Detail = () => {
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-semibold">{detailHotel.name}</h1>
           <h1 className="text-3xl font-semibold text-blue">
-            {parseInt(detailHotel.price).toLocaleString("vn-VN")} {"vnđ / đêm"}
+            {parseInt(detailHotel.price).toLocaleString('vn-VN')} {'vnđ / đêm'}
           </h1>
         </div>
         <div className="flex my-2">
@@ -109,12 +109,7 @@ const Detail = () => {
           </span>
           <p
             className="text-sm text-blue hover:cursor-pointer"
-            onClick={() =>
-              window.open(
-                `https://www.google.com/maps/search/${detailHotel.address}`
-              )
-            }
-          >
+            onClick={() => window.open(`https://www.google.com/maps/search/${detailHotel.address}`)}>
             {detailHotel.address}
           </p>
         </div>
@@ -139,8 +134,7 @@ const Detail = () => {
             {detailHotel.description}
             <br />
             <br />
-            Mọi người biệt thích địa điểm này — họ cho điểm{" "}
-            <span className="text-blue-600">{detailHotel.avgScore}</span> cho kỳ
+            Mọi người biệt thích địa điểm này — họ cho điểm <span className="text-blue-600">{detailHotel.avgScore}</span> cho kỳ
             nghĩ tại đây
           </p>
         </div>
@@ -148,12 +142,7 @@ const Detail = () => {
           <div className="flex items-center justify-center w-full h-32 font-medium border rounded-xl ">
             <div className="flex items-center grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               <div className="flex mx-4">
-                <svg
-                  viewBox="0 0 20 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="36"
-                >
+                <svg viewBox="0 0 20 32" fill="none" xmlns="http://www.w3.org/2000/svg" height="36">
                   <g clip-path="url(#clip0_5880_37773)">
                     <path
                       fill-rule="evenodd"
@@ -208,12 +197,7 @@ const Detail = () => {
                   </defs>
                 </svg>
                 <p className="text-xl">Được yêu thích</p>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 32"
-                  fill="none"
-                  height="36"
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 32" fill="none" height="36">
                   <g clip-path="url(#clip0_5880_37786)">
                     <path
                       fill-rule="evenodd"
@@ -288,14 +272,12 @@ const Detail = () => {
         </div>
         <div className="my-12">
           <div className="mt-4 mb-4 ">
-            <h2 className="mb-2 text-2xl font-semibold ">
-              Các tiện nghi được ưa chuộng nhất
-            </h2>
+            <h2 className="mb-2 text-2xl font-semibold ">Các tiện nghi được ưa chuộng nhất</h2>
             <div className="grid items-center grid-cols-2 gap-4 pb-6 border-b sm:grid-cols-3 md:grid-cols-4 text-2sm">
               {detailHotel.facilities &&
                 detailHotel.facilities
                   .slice(1, -1)
-                  .split(",")
+                  .split(',')
                   .map((facility, index) => {
                     let cleanFacility = facility.trim().slice(1, -1); // Loại bỏ dấu ngoặc đơn và khoảng trắng thừa
                     return (
@@ -305,9 +287,7 @@ const Detail = () => {
                     );
                   })}
             </div>
-            <h2 className="mt-6 text-2xl font-semibold">
-              Đánh giá của khách hàng
-            </h2>
+            <h2 className="mt-6 text-2xl font-semibold">Đánh giá của khách hàng</h2>
             <div className="items-center mx-auto mt-10 text-center">
               <div className="flex justify-center">
                 <img
@@ -322,17 +302,13 @@ const Detail = () => {
                   className="w-34 h-44"
                 />
               </div>
-              <h1 className="mb-4 text-3xl font-semibold">
-                Được khách yêu thích
-              </h1>
+              <h1 className="mb-4 text-3xl font-semibold">Được khách yêu thích</h1>
               <h2 className="text-xl font-midle">
                 Một trong những ngôi nhà được yêu thích nhất
                 <br />
                 <span>trên Airbnb dựa trên điểm xếp hạng,</span>
                 <br />
-                <span className="items-center text-center">
-                  đánh giá và độ tin cậy
-                </span>
+                <span className="items-center text-center">đánh giá và độ tin cậy</span>
               </h2>
             </div>
             <div className="flex items-center pb-8 my-12 font-medium border-b">
@@ -377,28 +353,19 @@ const Detail = () => {
         <div className="my-12">
           <div className="grid items-center grid-cols-2 gap-4 pb-6 sm:grid-cols-1 md:grid-cols-2 text-2sm">
             {detailHotel.HotelRatings ? (
-              detailHotel.HotelRatings?.map((cmt, index) => (
-                <Comment cmt={cmt} key={index} />
-              ))
+              detailHotel.HotelRatings?.map((cmt, index) => <Comment cmt={cmt} key={index} />)
             ) : (
-              <p className="uppercase text-2lg">
-                Chưa có nhận xét nào về khách sạn
-              </p>
+              <p className="uppercase text-2lg">Chưa có nhận xét nào về khách sạn</p>
             )}
           </div>
         </div>
         <div className="mt-20">
           {rcmd?.length > 0 && (
             <>
-              <h2 className="my-16 text-4xl font-semibold text-center">
-                Những khách sạn nổi bật đề xuất cho khách hàng
-              </h2>
+              <h2 className="my-16 text-4xl font-semibold text-center">Những khách sạn nổi bật đề xuất cho khách hàng</h2>
               <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
                 {rcmd.map((rcmdItem) => (
-                  <HotelRecommendLogin
-                    key={rcmdItem.user_id}
-                    rcmdItem={rcmdItem}
-                  />
+                  <HotelRecommendLogin key={rcmdItem.user_id} rcmdItem={rcmdItem} />
                 ))}
               </div>
             </>

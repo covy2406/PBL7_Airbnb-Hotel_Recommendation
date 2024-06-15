@@ -10,9 +10,8 @@ const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
   const [title_substring, setTitleSubstring] = useState(searchParams.get('title_substring') || '');
-  const [showSuggestions, setShowSuggestions] = useState(false);
+  // const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestions, setSugesstions] = useState([]);
-  //const [dataName, setDataName] = useState([]);
 
   const navigate = useNavigate();
 
@@ -43,7 +42,6 @@ const Header = () => {
     if (title_substring) {
       getsearchRecommend(title_substring)
         .then((res) => {
-          //setData(res.neighbours);
           setSugesstions(res.names);
           console.log(res.names);
         })
@@ -53,15 +51,9 @@ const Header = () => {
     }
   }, [title_substring]);
 
-  const handleBlur = () => {
-    setTimeout(() => {
-      setShowSuggestions(false);
-    }, 200); // Delay hiding the suggestions to allow clicking
-  };
-
   return (
     <>
-      <div className={` ${scrolling ? 'bg-white border-b border-slate-300' : 'bg-transparent '}`}>
+      <div className={` ${scrolling ? 'bg-white border border-slate-300' : 'bg-transparent '}`}>
         <div className="flex items-center justify-between h-28 sm:mx-6 md:mx-10 lg:mx-12 ">
           {/* left */}
           <Link className="flex h-6" component={Link} to={'/'}>
@@ -82,14 +74,11 @@ const Header = () => {
                 <div className="w-[32rem] rounded-full h-20 font-semibold text-gray-500 border-none">
                   <input
                     label="Địa điểm"
-                    placeholder="Địa điểm"
+                    placeholder="Nhập tên khách sạn bạn muốn tìm kiếm"
                     type="search"
                     className="border-none outline-none w-[24rem] h-20"
                     variant="outlined"
-                    onChange={(e) => setTitleSubstring(e.target.value)}
-                    autoFocus
-                    onFocus={() => title_substring && setShowSuggestions(true)} // Show suggestions on focus
-                    onBlur={handleBlur} // Hide suggestions on blur
+                    onChange={(e) => setTimeout(setTitleSubstring(e.target.value), 300)}
                   />
                 </div>
                 <button
@@ -100,7 +89,7 @@ const Header = () => {
               </div>
             </div>
             {/* hiển thị nội dung gợi ý để tìm kiếm (debounce) */}
-            {showSuggestions && (
+            {title_substring && (
               <div className=" absolute top-20 left-7 right-0 border bg-white shadow-md  z-10 w-[28rem]">
                 <ul className="list-none">
                   {suggestions.map((suggestion, index) => (

@@ -31,7 +31,7 @@ export default function AccountMenu() {
     setAnchorEl(null);
   };
 
-  const handleLogOut = async (event) => {
+  const handleLogOut = async () => {
     Cookies.remove('authToken');
     try {
       await signOut();
@@ -105,16 +105,16 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
         {!currentUser && (
-          <MenuItem onClick={handleClose} component={Link} to={'/login'}>
-            <Avatar /> Đăng nhập
-          </MenuItem>
+          <>
+            <MenuItem onClick={handleClose} component={Link} to={'/login'}>
+              <Avatar /> Đăng nhập
+            </MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to={'/signup'}>
+              <Avatar /> Đăng ký
+            </MenuItem>
+            <Divider />
+          </>
         )}
-        {!currentUser && (
-          <MenuItem onClick={handleClose} component={Link} to={'/signup'}>
-            <Avatar /> Đăng ký
-          </MenuItem>
-        )}
-        <Divider />
         <MenuItem onClick={handleClose} component={Link} to={'/accountInfo'}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
