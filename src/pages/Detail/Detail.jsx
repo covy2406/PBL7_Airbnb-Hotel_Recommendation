@@ -11,10 +11,7 @@ import { GiNightSleep } from 'react-icons/gi';
 import { getDetailHotel } from '../../api/apihotel';
 import { useParams } from 'react-router-dom';
 import Comment from '../../components/Comment/Comment';
-//import CustomIcons from '../../components/Pagination/Pagination';
-//import { StorageContext } from "../../context/Storage/StorageContext";
 import { getsearchRecommend } from '../../api/apiRecommend';
-//import HotelHomeNoLogin from '../../components/HotelHomeNoLogin/HotelHomeNoLogin';
 import HotelRecommendLogin from "../../components/HotelRecommendLogin/HotelRecommendLogin";
 import { getDetailHotelAsUser } from "../../api/apiHistory";
 import { StorageContext } from "../../context/Storage/StorageContext";
@@ -23,19 +20,10 @@ import { StorageContext } from "../../context/Storage/StorageContext";
 const Detail = () => {
   const [detailHotel, setDetailHotel] = useState([]);
   const { currentUser } = useContext(StorageContext);
-  //const storage = useContext(StorageContext);
-  // const [page, setPage] = useState(1); // Trang hiện tại
-  // const [hotels, setHotels] = useState([]); // Du lieu khach san hien tai
-  // const [totalPage, setTotalPage] = useState(0); // Tong so trang
-  // const count = 12; // Số lượng khách sạn trên mỗi trang
   const [rcmd, setRcmd] = useState([]);
-
-  //const params = useParams();
-  //const user_id = storage.userData.id;
 
   let { id } = useParams();
 
-  //let { id } = useParams();
   useEffect(() => {
     if (currentUser) {
       getDetailHotelAsUser(id)

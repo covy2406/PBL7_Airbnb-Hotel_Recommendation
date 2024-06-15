@@ -10,7 +10,6 @@ const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
   const [title_substring, setTitleSubstring] = useState(searchParams.get('title_substring') || '');
-  // const [showSuggestions, setShowSuggestions] = useState(false);
   const [suggestions, setSugesstions] = useState([]);
 
   const navigate = useNavigate();
@@ -110,7 +109,6 @@ const Header = () => {
           {/* right */}
           <div className="flex items-center font-semibold text-center text-gray-600">
             <AccountMenu />
-            {/* <MenuTransitions/> */}
           </div>
         </div>
       </div>

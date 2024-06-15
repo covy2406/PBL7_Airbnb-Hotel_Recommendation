@@ -1,8 +1,6 @@
-//import { Link } from '@mui/material';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { BsStarFill } from 'react-icons/bs';
-//import { getRecommend } from '../../api/apiRecommend';
 
 const HotelHome = ({ hotelItem }) => {
   return (
