@@ -125,7 +125,7 @@ export default function AccountMenu() {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          <Button onClick={handleLogOut}>Đăng xuất</Button>
+          <div onClick={handleLogOut}>Đăng xuất</div>
         </MenuItem>
       </Menu>
       <ToastContainer />
