@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdPlace } from "react-icons/md";
 import { FaPeopleGroup } from "react-icons/fa6";
 import {
@@ -16,11 +16,13 @@ import Comment from "../../components/Comment/Comment";
 import { getsearchRecommend } from "../../api/apiRecommend";
 //import HotelHomeNoLogin from '../../components/HotelHomeNoLogin/HotelHomeNoLogin';
 import HotelRecommendLogin from "../../components/HotelRecommendLogin/HotelRecommendLogin";
+import { getDetailHotelAsUser } from "../../api/apiHistory";
+import { StorageContext } from "../../context/Storage/StorageContext";
 //import { IoMdCheckmark } from "react-icons/io";
 
 const Detail = () => {
   const [detailHotel, setDetailHotel] = useState([]);
-  //const { currentUser } = useContext(StorageContext);
+  const { currentUser } = useContext(StorageContext);
   //const storage = useContext(StorageContext);
   // const [page, setPage] = useState(1); // Trang hiện tại
   // const [hotels, setHotels] = useState([]); // Du lieu khach san hien tai
@@ -32,6 +34,29 @@ const Detail = () => {
   //const user_id = storage.userData.id;
 
   let { id } = useParams();
+
+  //let { id } = useParams();
+  useEffect(() => {
+    if (currentUser) {
+      getDetailHotelAsUser(id)
+        .then((res) => {
+          setDetailHotel(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } else {
+      getDetailHotel(id)
+        .then((res) => {
+          setDetailHotel(res);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
   useEffect(() => {
     getDetailHotel(id)
       .then((res) => {

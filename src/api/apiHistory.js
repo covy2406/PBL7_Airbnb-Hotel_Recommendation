@@ -9,3 +9,13 @@ export async function getHistory(page, count) {
     console.error(err);
   }
 }
+
+// api find as user
+export async function getDetailHotelAsUser(id) {
+  try {
+    const res = await axiosClient.get(`/hotels/find-as-user/${id}`);
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+}
