@@ -1,14 +1,19 @@
-import React, { useMemo, useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { Bar, BarChart, CartesianGrid, Rectangle, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { useReactTable, getCoreRowModel, getSortedRowModel, getFilteredRowModel, flexRender } from '@tanstack/react-table';
 import { ProvincesStatisticService } from '../../services/AdminServices';
-import { CircularProgress } from '@mui/material';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { getCities } from '../../../../api/apiCities';
 
 export const ProvinceStatistic = () => {
   const { provinceTable, loading, provinceChart } = ProvincesStatisticService();
   const [chartData, setChartData] = useState(provinceChart);
+  const [cities, setCities] = useState([]);
+  const navigate = useNavigate();
+
   const columns = useMemo(
     () => [
       {
@@ -61,12 +66,27 @@ export const ProvinceStatistic = () => {
     setChartData(newChartData);
   }, [tableRows, table]);
 
-  if (loading || !provinceTable || !provinceChart)
+  useEffect(() => {
+    getCities()
+      .then((res) => {
+        setCities(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  if (loading || !provinceTable || !provinceChart || !cities)
     return (
       <div className="w-full h-full flex items-center justify-center">
         <CircularProgress></CircularProgress>
       </div>
     );
+
+  const handleNavigateCities = (city) => {
+    const cityId = cities.find((item) => item.name === city.name).id;
+    navigate(`/cities/${cityId}`);
+  };
 
   return (
     <div className="bg-white p-4 rounded-md max-h-[80vh] overflow-hidden">
@@ -78,11 +98,11 @@ export const ProvinceStatistic = () => {
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id} className="">
                   {headerGroup.headers.map((header) => (
-                    <th key={header.id}>
+                    <th key={header.id} className="bg-slate-500  text-white p-0">
                       {header.isPlaceholder ? null : (
                         <>
                           <div
-                            className="bg-black-light text-white py-1"
+                            className="py-2 border-x-white border-x-2"
                             {...{
                               onClick: header.column.getToggleSortingHandler(),
                               style: {
@@ -97,7 +117,7 @@ export const ProvinceStatistic = () => {
                           </div>
                           {header.column.getCanFilter() ? (
                             <input
-                              className="pl-1 py-1 border-2 border-grey"
+                              className="pl-1 py-1 m-0 text-black"
                               value={header.column.getFilterValue() || ''}
                               onChange={(e) => header.column.setFilterValue(e.target.value)}
                               placeholder={`Search...`}
@@ -111,8 +131,12 @@ export const ProvinceStatistic = () => {
               ))}
             </thead>
             <tbody>
-              {table.getRowModel().rows.map((row) => (
-                <tr key={row.id}>
+              {table.getRowModel().rows.map((row, rowIndex) => (
+                <tr
+                  key={row.id}
+                  className="hover:cursor-pointer hover:brightness-90"
+                  style={{ backgroundColor: rowIndex % 2 !== 0 ? '#ffffff' : '#e9e9e9' }}
+                  onDoubleClick={() => handleNavigateCities({ name: row.getVisibleCells()[0].getValue() })}>
                   {row.getVisibleCells().map((cell) => (
                     <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
                   ))}
@@ -139,7 +163,12 @@ export const ProvinceStatistic = () => {
                 <XAxis dataKey="name" angle={90} dy={10} textAnchor="start" tick={chartData.length > 20 ? false : true} />
                 <YAxis label={{ value: 'Số lượng khách sạn', angle: -90, dx: -25 }} />
                 <Tooltip />
-                <Bar dataKey="value" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
+                <Bar
+                  dataKey="value"
+                  fill="#1976d2"
+                  activeBar={<Rectangle fill="gold" stroke="purple" />}
+                  onDoubleClick={handleNavigateCities}
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>

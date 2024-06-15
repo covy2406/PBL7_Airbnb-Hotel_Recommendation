@@ -16,6 +16,8 @@ import { AdminLayout } from './pages/Admin/layouts/AdminLayout';
 import { AdminDashboard, AdminNavbars } from './pages/Admin';
 import { ProvinceStatistic } from './pages/Admin/features/Statistic/ProvinceStatistic';
 import { Pricestatistic } from './pages/Admin/features/Prices/PriceStatistic';
+import { AdminUsers } from './pages/Admin/features/Users/AdminUsers';
+import { HotelsStatistic } from './pages/Admin/features/Hotels';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -41,6 +43,8 @@ const App = () => {
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="provinces" element={<ProvinceStatistic />} />
             <Route path="prices" element={<Pricestatistic />} />
+            <Route path="users" element={<AdminUsers />} />
+            <Route path="hotels" element={<HotelsStatistic />} />
           </Route>
         </Route>
       </>

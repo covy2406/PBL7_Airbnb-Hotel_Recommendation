@@ -100,11 +100,11 @@ export const Pricestatistic = () => {
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
                   {headerGroup.headers.map((header) => (
-                    <th key={header.id} className="">
+                    <th key={header.id} className="bg-slate-500  text-white p-0">
                       {header.isPlaceholder ? null : (
                         <>
                           <div
-                            className="bg-black-light text-white py-1"
+                            className="py-2 border-x-white border-x-2"
                             {...{
                               onClick: header.column.getToggleSortingHandler(),
                               style: {
@@ -119,7 +119,7 @@ export const Pricestatistic = () => {
                           </div>
                           {header.column.getCanFilter() ? (
                             <input
-                              className="pl-1 py-1 border-2 border-grey"
+                              className="pl-1 py-1 m-0 text-black"
                               value={header.column.getFilterValue() || ''}
                               onChange={(e) => header.column.setFilterValue(e.target.value)}
                               placeholder={`Input >, <, = number`}
@@ -162,9 +162,9 @@ export const Pricestatistic = () => {
                   unit="VNĐ"
                   tickFormatter={(value) => `${value.toLocaleString('vi-VN')} `}
                 />
-                <YAxis type="number" dataKey="score" name="Số điểm" domain={[0, 10]} />
+                <YAxis type="number" dataKey="score" name="Số điểm" />
                 <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                <Scatter data={chartData} fill="#82ca9d" />
+                <Scatter data={chartData} fill="#1976d2" />
               </ScatterChart>
             </ResponsiveContainer>
           </div>
